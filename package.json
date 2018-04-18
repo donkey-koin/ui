@@ -1,0 +1,60 @@
+{
+  "name": "ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Testy? A po co to komu XD\" && exit 1",
+    "start": "./node_modules/.bin/webpack-dev-server --config ./webpack/webpack.dev.config.js --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donkey-koin/ui.git"
+  },
+  "author": "Donkey Boys",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://https://github.com/donkey-koin/issues"
+  },
+  "homepage": "https://github.com/donkey-koin/ui#readme",
+  "dependencies": {
+    "react": "^16.2.0",
+    "webpack": "^3.10.0"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "bootstrap": "^4.0.0-beta.3",
+    "css-loader": "^0.28.8",
+    "file-loader": "^1.1.6",
+    "json-loader": "^0.5.7",
+    "less-loader": "^4.0.5",
+    "react-bootstrap": "^0.32.0",
+    "react-canvas-component": "^0.1.5",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "reactstrap": "^5.0.0-alpha.4",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
+    "webpack-dev-server": "^2.9.7"
+  }
+}
