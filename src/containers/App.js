@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import  LoginComponent  from '../components/Login/LoginComponent';
+import  {LoginComponent}  from '../components/Login';
 import { Row, Col } from 'reactstrap'
 
 export default class App extends Component {

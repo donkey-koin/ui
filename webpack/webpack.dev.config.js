@@ -56,6 +56,7 @@ module.exports = {
     },
     devServer: {
         contentBase: parentDir,
-        historyApiFallback: true
+        historyApiFallback: true,
+        port: 4200
     }
 }
