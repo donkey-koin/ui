@@ -11,14 +11,15 @@ export class Dashboard extends Component {
         super(props)
     }
 
-    log = () => {
+    signIn = (username, password) => {
         this.props.actions.login({username: "xd", password: "gmd"})
     }
 
     render() {
         return (
             <div className={filterableTable}>
-                <LoginComponent/>
+                <LoginComponent loginHandler={this.signIn}/>
+                Turboinba
             </div>
         );
     }

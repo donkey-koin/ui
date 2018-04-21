@@ -17,6 +17,7 @@
   "author": "Jean Paul Secundo",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.1.0",
     "file-loader": "^0.9.0",
     "prop-types": "^15.5.9",
     "react": "^15.0.2",

@@ -14,8 +14,8 @@ export default class Login extends Component {
             <div className={loginStyles.loginForm}>
                 <h2>Login</h2>
                 <div>
-                    <input type="text" placeholder="Username" />
-                    <input type="password" placeholder="Password" />
+                    <div className="row"><input type="text" placeholder="Username" /></div>
+                    <div className="row"><input type="password" placeholder="Password" /></div>
                     <button> Sign in </button>
                     <Link to="/register">Don't have an account? Register</Link>
                 </div>
