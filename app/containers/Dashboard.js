@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { login } from '../actions';
 import { filterableTable } from '../styles/filterableTable.scss';
 import { bindActionCreators } from 'redux';
+import { Login as LoginComponent} from '../components/Login'
 
 export class Dashboard extends Component {
 
@@ -17,7 +18,7 @@ export class Dashboard extends Component {
     render() {
         return (
             <div className={filterableTable}>
-                <button onClick={this.log} />
+                <LoginComponent/>
             </div>
         );
     }

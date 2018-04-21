@@ -13,5 +13,5 @@ export const login = (loginData) => dispatch => {
                 username: response.username
             }
         })
-    }).catch(error => console.error(error));
+    }).catch(error => console.log(error));
 }
