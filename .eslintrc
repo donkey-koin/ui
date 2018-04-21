@@ -37,10 +37,6 @@
     "no-shadow": 2,                  // http://eslint.org/docs/rules/no-shadow
     "no-shadow-restricted-names": 2, // http://eslint.org/docs/rules/no-shadow-restricted-names
     "no-undef": 2,                   // http://eslint.org/docs/rules/no-undef
-    "no-unused-vars": [2, {          // http://eslint.org/docs/rules/no-unused-vars
-      "vars": "local",
-      "args": "after-used"
-    }],
     "no-use-before-define": 2,       // http://eslint.org/docs/rules/no-use-before-define
 
     /**
@@ -165,7 +161,6 @@
     "react/no-did-update-set-state": 2,
     "react/no-multi-comp": 2,
     "react/no-unknown-property": 2,
-    "react/prop-types": 2,
     "react/react-in-jsx-scope": 2,
     "react/self-closing-comp": 2,
     "react/sort-comp": 2,

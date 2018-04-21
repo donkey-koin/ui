@@ -10,6 +10,7 @@ export function configureStore(initialState) {
     return createStore(
         rootReducer,
         initialState,
+        applyMiddleware(thunk),
         applyMiddleware(middleware),
     );
 }

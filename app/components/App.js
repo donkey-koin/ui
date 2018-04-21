@@ -5,10 +5,10 @@ import Routes from '../routes';
 
 const App = () =>
     <div>
-        <h1>Test</h1>
+        <h1>Test1</h1>
         { Routes }
         <footer className={footer}>
-            <Link to="/">Login</Link>
+            <Link to="/">Dashboard</Link>
             <Link to="/about">About</Link>
         </footer>
     </div>;
