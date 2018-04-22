@@ -17,8 +17,8 @@ export class Dashboard extends Component {
 
     render() {
         return (
-            <div className={filterableTable}>
-                <LoginComponent loginHandler={this.signIn}/>
+            <div>
+                {!this.props.user.loggedIn && <LoginComponent loginHandler={this.signIn}/>}
                 Turboinba
             </div>
         );
@@ -26,7 +26,7 @@ export class Dashboard extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.user
+    user: state.userReducer
 })
 
 const mapDispatchToProps = dispatch => ({
