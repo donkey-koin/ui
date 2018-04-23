@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import About from './components/About';
-import Dashboard from './containers/Dashboard';
+import Dashboard from './components/Dashboard';
 import { RegistrationComponent } from './components/Registration'
 
 export default (

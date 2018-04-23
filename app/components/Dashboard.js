@@ -1,9 +1,10 @@
 import React, {Component}  from 'react';
 import { connect } from 'react-redux';
 import { login } from '../actions';
-import * as dashboardStyles from '../styles/dashboard.scss';
 import { bindActionCreators } from 'redux';
-import { Login as LoginComponent} from '../components/Login'
+import { Link } from 'react-router-dom';
+import { footer } from '../styles/footer.scss';
+
 
 export class Dashboard extends Component {
 
@@ -11,19 +12,14 @@ export class Dashboard extends Component {
         super(props)
     }
 
-    signIn = (username, password) => {
-        this.props.actions.login(username,password)
-    }
-
     render() {
         return (
             <div>
-                {   
-                    !this.props.user.loggedIn && <div className={dashboardStyles.loginComponent}>
-                        <LoginComponent loginInProgress={this.props.user.loginInProgress} loginHandler={this.signIn}/>
-                    </div>
-                }
                 Turboinba
+                <footer className={footer}>
+                <Link to="/">Dashboard</Link>
+                <Link to="/about">About</Link>
+                </footer>
             </div>
         );
     }
