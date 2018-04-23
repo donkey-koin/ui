@@ -12,7 +12,7 @@ export class Dashboard extends Component {
     }
 
     signIn = (username, password) => {
-        this.props.actions.login("xd","gmd")
+        this.props.actions.login(username,password)
     }
 
     render() {
@@ -20,7 +20,7 @@ export class Dashboard extends Component {
             <div>
                 {   
                     !this.props.user.loggedIn && <div className={dashboardStyles.loginComponent}>
-                        <LoginComponent loginHandler={this.signIn}/>
+                        <LoginComponent loginInProgress={this.props.user.loginInProgress} loginHandler={this.signIn}/>
                     </div>
                 }
                 Turboinba
