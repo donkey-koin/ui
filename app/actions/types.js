@@ -1,1 +1,3 @@
 export const LOGIN = 'LOGIN';
+export const LOGIN_SUCCESSFUL = 'LOGIN_SUCCESSFUL'
+export const LOGIN_FAILURE = 'LOGIN FAILURE'

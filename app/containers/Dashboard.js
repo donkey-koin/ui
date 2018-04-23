@@ -1,7 +1,7 @@
 import React, {Component}  from 'react';
 import { connect } from 'react-redux';
 import { login } from '../actions';
-import { filterableTable } from '../styles/filterableTable.scss';
+import * as dashboardStyles from '../styles/dashboard.scss';
 import { bindActionCreators } from 'redux';
 import { Login as LoginComponent} from '../components/Login'
 
@@ -12,13 +12,17 @@ export class Dashboard extends Component {
     }
 
     signIn = (username, password) => {
-        this.props.actions.login({username: "xd", password: "gmd"})
+        this.props.actions.login("xd","gmd")
     }
 
     render() {
         return (
             <div>
-                {!this.props.user.loggedIn && <LoginComponent loginHandler={this.signIn}/>}
+                {   
+                    !this.props.user.loggedIn && <div className={dashboardStyles.loginComponent}>
+                        <LoginComponent loginHandler={this.signIn}/>
+                    </div>
+                }
                 Turboinba
             </div>
         );

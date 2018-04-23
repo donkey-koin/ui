@@ -16,7 +16,7 @@ export default class Login extends Component {
                 <div>
                     <div className="row"><input type="text" placeholder="Username" /></div>
                     <div className="row"><input type="password" placeholder="Password" /></div>
-                    <button> Sign in </button>
+                    <button onClick={this.props.loginHandler}> Sign in </button>
                     <Link to="/register">Don't have an account? Register</Link>
                 </div>
           </div>
