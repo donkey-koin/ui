@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Routes from '../routes';
 import * as dashboardStyles from '../styles/dashboard.scss';
+import * as appStyles from '../styles/app.scss';
 import { Login as LoginComponent} from '../components/Login'
 import { connect } from 'react-redux';
 import { login } from '../actions';
@@ -18,12 +19,14 @@ export class App extends Component {
         this.props.actions.login(username,password)
     }
 
+    shouldBeRendered = () => !this.props.user.loggedIn && this.props.location.pathname !== '/register' 
+
     render() { 
         return (
-            <div>
-                { Routes }
+            <div className={appStyles.mainContainer}>
+                <div className={this.shouldBeRendered()   ?  dashboardStyles.hideDashboard : dashboardStyles.showDashboard }>{ Routes }</div>
                 {   
-                    (!this.props.user.loggedIn && this.props.location.pathname !== '/register') && <div className={dashboardStyles.loginComponent}>
+                    this.shouldBeRendered() && <div className={dashboardStyles.loginComponent}>
                         <LoginComponent loginInProgress={this.props.user.loginInProgress} loginHandler={this.signIn}/>
                     </div>
                 }
