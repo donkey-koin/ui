@@ -51,7 +51,7 @@ export default class Registration extends Component {
         const result = '';
         if (validator && !validator.valid) {
             const errors = validator.errors.map((info, index) => {
-                return <small key={index}>* {info}<br/></small>;
+                return <small key={index}>* {info}<br /></small>;
             });
 
             return (
@@ -85,7 +85,7 @@ export default class Registration extends Component {
                     this.validators[fieldName].errors.push(rule.message);
                     this.validators[fieldName].valid = false;
                 }
-            } else if(typeof rule.test === 'function' && fieldName === "password-confirmation") {
+            } else if (typeof rule.test === 'function' && fieldName === "password-confirmation") {
                 if (!rule.test(value, this.state.password)) {
                     this.validators[fieldName].errors.push(rule.message);
                     this.validators[fieldName].valid = false;
@@ -115,31 +115,31 @@ export default class Registration extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="username">Username:</label>
-                                <input id="username" className="form-control" onChange={(e) => this.handleInputChange(e,"username")} type="text" checked="this.state.username" required />
-                                { this.displayValidationErrors("username") }
+                                <input id="username" className="form-control" onBlur={(e) => this.handleInputChange(e, "username")} type="text" checked="this.state.username" required />
+                                {this.displayValidationErrors("username")}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="email">Email:</label>
-                                <input id="email" className="form-control" type="email" onChange={(e) => this.handleInputChange(e,"email")} required />
-                                { this.displayValidationErrors("email") }
+                                <input id="email" className="form-control" type="email" onBlur={(e) => this.handleInputChange(e, "email")} required />
+                                {this.displayValidationErrors("email")}
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password">Password:</label>
-                                <input id="password" className="form-control" type="password" onChange={(e) => this.handleInputChange(e,"password")} required aria-describedby="password-help" />
+                                <input id="password" className="form-control" type="password" onBlur={(e) => this.handleInputChange(e, "password")} required aria-describedby="password-help" />
                                 <small id="password-help" className="form-text text-muted">Must contain at least 6 characters</small>
-                                { this.displayValidationErrors("password") }
+                                {this.displayValidationErrors("password")}
 
                             </div>
                             <div className="form-group">
                                 <label htmlFor="password-confirmation">Confirm Password:</label>
-                                <input id="password-confirmation" type="password" className="form-control" onChange={(e) => this.handleInputChange(e,"password-confirmation")} required />
-                                { this.displayValidationErrors("password-confirmation") }
+                                <input id="password-confirmation" type="password" className="form-control" onBlur={(e) => this.handleInputChange(e, "password-confirmation")} required />
+                                {this.displayValidationErrors("password-confirmation")}
                             </div>
                             <div className="checkbox">
-                                <label><input id="akzeptierung" type="checkbox" onChange={(e) => this.handleInputChange(e,"akzeptierung")} /> I agree <Link to="/">Terms And Conditions</Link> and <Link to="/">Privacy Policy</Link>.</label>
-                                { this.displayValidationErrors("akzeptierung") }
+                                <label><input id="akzeptierung" type="checkbox" onChange={(e) => this.handleInputChange(e, "akzeptierung")} /> I agree <Link to="/">Terms And Conditions</Link> and <Link to="/">Privacy Policy</Link>.</label>
+                                {this.displayValidationErrors("akzeptierung")}
                             </div>
-                            <input type="submit" value="Submit" className="btn btn-primary" />
+                            <input type="submit" value="Submit" className="btn btn-primary" disabled={!this.isFormValid()} />
                         </form>
                     </div>
                     <div className="col-4" />
