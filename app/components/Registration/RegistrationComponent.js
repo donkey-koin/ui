@@ -102,6 +102,25 @@ export default class Registration extends Component {
     handleSubmit(event) {
         console.log(this.state);
         console.log("form submitted");
+        let body = {
+            "username": this.state.username,
+            "password": this.state.password,
+            "email": this.state.email
+        }
+        console.log(body);
+        fetch('http://localhost:5000/register',{
+            body: JSON.stringify(body),
+            headers: {
+                'content-type': 'application/json',
+            },
+            method: 'POST'
+        })
+        .then(res => res)    
+        .then(res => {
+            console.log(res);
+            console.log('registered');
+        });
+
         event.preventDefault();
     }
 
