@@ -155,7 +155,11 @@ export default class Registration extends Component {
                                 {this.displayValidationErrors("password-confirmation")}
                             </div>
                             <div className="checkbox">
-                                <label><input id="akzeptierung" type="checkbox" onChange={(e) => this.handleInputChange(e, "akzeptierung")} /> I agree <Link to="/">Terms And Conditions</Link> and <Link to="/">Privacy Policy</Link>.</label>
+                                <label><input id="akzeptierung" type="checkbox" onChange={(e) => this.handleInputChange(e, "akzeptierung")} /> I agree 
+                                <Link to="/legal/terms" target="_blank">Terms And Conditions</Link>
+                                &nbsp;and&nbsp; 
+                                <Link to="/legal/privacy" target="_blank">Privacy Policy</Link>.
+                                </label>
                                 {this.displayValidationErrors("akzeptierung")}
                             </div>
                             <input type="submit" value="Submit" className="btn btn-primary" disabled={!this.isFormValid()} />

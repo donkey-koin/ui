@@ -19,7 +19,7 @@ export class App extends Component {
         this.props.actions.login(username,password)
     }
 
-    shouldBeRendered = () => !this.props.user.loggedIn && this.props.location.pathname !== '/register' 
+    shouldBeRendered = () => !this.props.user.loggedIn && ['/register', '/legal/privacy', '/legal/terms'].indexOf(this.props.location.pathname) < 0
 
     render() { 
         return (
