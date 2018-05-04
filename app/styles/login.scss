@@ -1,6 +1,106 @@
-.loginForm {
+.loginScreen {
     margin: auto;
     width: 100%;
     height: 100%;
-    background-color: darkgray; 
+    background-color:  	#696969; 
+}
+
+.title { 
+    text-align: center;
+    padding: 20px, 0px, 20px;
+
+    h2 { 
+        font-family: 'Courier New', Courier, monospace;
+        margin: 0;
+        padding: 0;
+        text-transform: uppercase;
+        color: #262626;
+    }
+}
+
+.container {
+    width: 50%;
+    height: 400px;
+    background: #fff;
+    margin: 0 auto;
+    border: 2px solid #fff;
+    border-radius: 5px; 
+    box-shadow: 0, 15px, 40px, rgba(0,0,0,.5);
+}
+
+.loginForm {
+    width: 100%;
+    padding: 50px 40px;
+    box-sizing: border-box; 
+    height: 400px;
+
+    button { 
+        margin-bottom: 20px;
+        border: none;
+        outline: none;
+        height: 40px;
+        color: #fff;
+        background: #262626;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        cursor: pointer;
+        // border: #262626 2px solid;
+        text-transform: uppercase;
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+            display: inline;
+
+            .loader {
+                float: right;
+            }
+        }
+
+       
+    }
+
+    button:hover {
+        color: #262626; 
+        background:  #32CD32;
+        transition: background 250ms ease;
+    }
+
+    input { 
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 2px solid black;
+        outline: none;
+        height: 40px;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    input:focus { 
+        border-bottom: 2px solid#32CD32;
+        transition: border-bottom 100ms ease;
+    }
+
+    .loginActions {
+        text-align: center; 
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.loader {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

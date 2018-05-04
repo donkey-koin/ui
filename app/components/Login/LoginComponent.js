@@ -30,15 +30,24 @@ export default class Login extends Component {
 
     render() {
         return(
-            <div className={loginStyles.loginForm}>
-                <h2>Login</h2>
-                <div>
-                    <div className="row"><input type="text" onChange={this.handleLoginChange} placeholder="Username" /></div>
-                    <div className="row"><input type="password" onChange={this.handlePasswordChange} placeholder="Password" /></div>
-                    <button onClick={() => this.props.loginHandler(this.state.username,this.state.password)}> Sign in </button>
-                    <Link to="/register">Don't have an account? Register</Link>
-                    {this.props.loginInProgress && <h2>Loading xdxd</h2>}
-                </div>
+            <div className={loginStyles.loginScreen}>
+                    <div className={loginStyles.container}>
+                        <div className={loginStyles.title}><h2>Donkey Koin Exchange</h2></div>
+                        <div className={loginStyles.loginForm}> 
+                            <div className="row"><input type="text" onChange={this.handleLoginChange} placeholder="Username" /></div>
+                            <div className="row"><input type="password" onChange={this.handlePasswordChange} placeholder="Password" /></div>
+                            <div className="row">
+                                <button onClick={() => this.props.loginHandler(this.state.username,this.state.password)}> 
+                                    {this.props.loginInProgress ? <p>Logging in... <div className={loginStyles.loader}></div></p> : <p>Login</p> }
+                                </button>
+                            </div>
+                            <div className="row">
+                                <div className={loginStyles.loginActions}>Don't have an account yet? <Link to="/register">Register</Link></div>
+                                {/* &nbsp;
+                                <div className="col-xs-6"><a href="#">Forget password</a></div> */}
+                            </div>
+                        </div>
+                    </div>
           </div>
         )
     }
