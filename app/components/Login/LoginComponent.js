@@ -28,6 +28,7 @@ export default class Login extends Component {
         })
     }
 
+    // TODO: fix login loader, handle errors, center form
     render() {
         return(
             <div className={loginStyles.loginScreen}>
@@ -41,6 +42,7 @@ export default class Login extends Component {
                                     {this.props.loginInProgress ? <p>Logging in... <div className={loginStyles.loader}></div></p> : <p>Login</p> }
                                 </button>
                             </div>
+                            {this.props.loginError && <div className="row"><p className={loginStyles.errorMessage}>Invalid login/password. Please double-check and try again.</p></div>}
                             <div className="row">
                                 <div className={loginStyles.loginActions}>Don't have an account yet? <Link to="/register">Register</Link></div>
                                 {/* &nbsp;

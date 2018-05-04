@@ -91,6 +91,13 @@
     }
 }
 
+.errorMessage {
+    margin: auto;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 20px;
+}
+
 .loader {
     border: 2px solid #f3f3f3;
     border-top: 2px solid #3498db;

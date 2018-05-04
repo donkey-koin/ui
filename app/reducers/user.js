@@ -4,7 +4,8 @@ const initState = {
     loggedIn: false,
     loggedUser: '',
     loginInProgress: false,
-    token: undefined
+    token: undefined,
+    isError: false
 };
 
 export default (state = initState, action) => {
@@ -13,6 +14,7 @@ export default (state = initState, action) => {
             return {
                 ...state,
                 loginInProgress: true,
+                isError: false
             };
         case types.LOGIN_SUCCESSFUL: 
             return {
@@ -20,12 +22,14 @@ export default (state = initState, action) => {
                 loggedIn: true,
                 loggedUser: action.payload.username,
                 loginInProgress: false,
-                token: action.payload.token
+                token: action.payload.token,
+                isError: false
             };
         case types.LOGIN_FAILURE:
             return {
                 ...state,
-                loginInProgress: false
+                loginInProgress: false,
+                isError: true
             };
         default:
             return state;
