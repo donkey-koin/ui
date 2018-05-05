@@ -28,6 +28,22 @@ export default class Login extends Component {
         })
     }
 
+    getButtonLoading = () => {
+        return (
+            <button> 
+                <p>Logging in... <div className={loginStyles.loader}></div></p>
+            </button>
+        )
+    }
+
+    getButtonNotLoading = () => {
+        return (
+            <button onClick={() => this.props.loginHandler(this.state.username,this.state.password)}> 
+                <p>Login</p>
+            </button>
+        )
+    }
+
     // TODO: fix login loader, handle errors, center form
     render() {
         return(
@@ -38,9 +54,7 @@ export default class Login extends Component {
                             <div className="row"><input type="text" onChange={this.handleLoginChange} placeholder="Username" /></div>
                             <div className="row"><input type="password" onChange={this.handlePasswordChange} placeholder="Password" /></div>
                             <div className="row">
-                                <button onClick={() => this.props.loginHandler(this.state.username,this.state.password)}> 
-                                    {this.props.loginInProgress ? <p>Logging in... <div className={loginStyles.loader}></div></p> : <p>Login</p> }
-                                </button>
+                                {this.props.loginInProgress ? this.getButtonLoading() : this.getButtonNotLoading()}
                             </div>
                             {this.props.loginError && <div className="row"><p className={loginStyles.errorMessage}>Invalid login/password. Please double-check and try again.</p></div>}
                             <div className="row">
