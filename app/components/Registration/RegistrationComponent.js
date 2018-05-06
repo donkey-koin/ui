@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import validators from './validator';
+import * as registrationStyles from '../../styles/registration.scss';
 
 
 export default class Registration extends Component {
@@ -126,12 +127,12 @@ export default class Registration extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <h1>Create new account</h1>
-                <h5>Join Donkey Koin Exchange.</h5>
+            <div className={registrationStyles + " container-fluid"} >
                 <div className="row">
                     <div className="col-8">
                         <form onSubmit={this.handleSubmit}>
+                            <h1>Create new account</h1>
+                            <h5>Join Donkey Koin Exchange.</h5>
                             <div className="form-group">
                                 <label htmlFor="username">Username:</label>
                                 <input id="username" className="form-control" onBlur={(e) => this.handleInputChange(e, "username")} type="text" checked="this.state.username" required />
@@ -155,7 +156,7 @@ export default class Registration extends Component {
                                 {this.displayValidationErrors("password-confirmation")}
                             </div>
                             <div className="checkbox">
-                                <label><input id="akzeptierung" type="checkbox" onChange={(e) => this.handleInputChange(e, "akzeptierung")} /> I agree 
+                                <label><input id="akzeptierung" type="checkbox" onChange={(e) => this.handleInputChange(e, "akzeptierung")} /> I agree&nbsp;  
                                 <Link to="/legal/terms" target="_blank">Terms And Conditions</Link>
                                 &nbsp;and&nbsp; 
                                 <Link to="/legal/privacy" target="_blank">Privacy Policy</Link>.
@@ -163,6 +164,9 @@ export default class Registration extends Component {
                                 {this.displayValidationErrors("akzeptierung")}
                             </div>
                             <input type="submit" value="Submit" className="btn btn-primary" disabled={!this.isFormValid()} />
+                            <br/>
+                            <br/>
+                            <Link to="/">Already have an account?</Link>
                         </form>
                     </div>
                     <div className="col-4" />
