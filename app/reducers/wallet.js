@@ -9,9 +9,10 @@ const initState = {
 export default (state = initState, action) => {
     switch (action.type) {
         case types.DEPOSIT_TO_WALLET_SUCCESS:
+            let parsedInt = parseInt(action.payload.amount)
             return {
                 ...state,
-                balanceEuro: action.payload.amount + state.balanceEuro
+                balanceEuro: parsedInt + state.balanceEuro
             };
         case types.UPDATE_WALLET:
             return {

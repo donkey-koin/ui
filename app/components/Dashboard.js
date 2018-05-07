@@ -14,6 +14,10 @@ export class Dashboard extends Component {
         super(props)
     }
 
+    componentDidMount() {
+        this.props.actions.updateWallet(this.props.user.loggedUser)
+    }
+
     onSztynks = () =>  {
         let sztynks1 = this.props.user.loggedUser;
         let sztynks2 = this.props.user.token;
@@ -80,7 +84,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({ login, depositToWallet }, dispatch)
+    actions: bindActionCreators({ login, depositToWallet, buyKoin, updateWallet }, dispatch)
 });
 
 export default connect(
