@@ -115,7 +115,7 @@ export default class Registration extends Component {
     signIn = (event) => {
         event.preventDefault();
         this.props.history.push('/');
-    }  
+    }
 
     handleSubmit(event) {
         console.log("form submitted");
@@ -196,10 +196,10 @@ export default class Registration extends Component {
                         {this.displayValidationErrors("akzeptierung")}
                     </div>
                     <input type="submit" value="Submit" className="btn btn-primary" disabled={!this.isFormValid()} />
-                    <div>
-                        <Link to="/">Already have an account?</Link>
-                    </div>
                 </form>
+                <div className={registrationStyles.link}>
+                    <Link to="/">Already have an account?</Link>
+                </div>
                 {
                     this.state.showModal &&
                     <div className={registrationStyles.modal}>
