@@ -29,3 +29,31 @@ export const login = (username, password) => dispatch => {
         dispatch({ type: types.LOGIN_FAILURE })
     });
 }
+
+export const depositToWallet = (username, amountToDeposit) => dispatch => {
+    
+    dispatch({
+        type: types.DEPOSIT_TO_WALLET
+    });
+
+    return fetchJSON("http://localhost:5000/depositToWallet", {
+        "username": username,
+        "moneyToDeposit": amountToDeposit
+    },"POST").then(response => {
+        console.log(response);
+        if(response.error) { 
+            console.log(response.error)
+            dispatch({ type: types.DEPOSIT_TO_WALLET_FAILURE })
+        } else { 
+            dispatch({
+                type: types.DEPOSIT_TO_WALLET_SUCCESS,
+                payload: {
+                    amount: amountToDeposit
+                }
+            })
+        }
+    }).catch(error => {
+        console.log(error)
+        dispatch({ type: types.DEPOSIT_TO_WALLET_FAILURE })
+    });
+}
