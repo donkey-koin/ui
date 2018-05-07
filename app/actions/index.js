@@ -57,3 +57,50 @@ export const depositToWallet = (username, amountToDeposit) => dispatch => {
         dispatch({ type: types.DEPOSIT_TO_WALLET_FAILURE })
     });
 }
+
+export const buyKoin = (username, moneyAmount) => dispatch => {
+    
+    dispatch({
+        type: types.BUY_KOIN
+    });
+
+    return fetchJSON("http://localhost:5000/purchase", {
+        "username": username,
+        "moneyAmount": moneyAmount
+    },"POST").then(response => {
+        console.log(response);
+        if(response.error) { 
+            console.log(response.error)
+            dispatch({ type: types.BUY_KOIN_FAILURE })
+        } else { 
+            dispatch({
+                type: types.BUY_KOIN_SUCCESS,
+            })
+        }
+    }).catch(error => {
+        console.log(error)
+        dispatch({ type: types.BUY_KOIN_FAILURE})
+    });
+}
+
+export const updateWallet = (username) => dispatch => {
+    
+    return fetchJSON("http://localhost:5000/walletContent", {
+        "username": username
+    },"POST").then(response => {
+        console.log(response);
+        if(response.error) { 
+            console.log(response.error)
+        } else { 
+            dispatch({
+                type: types.UPDATE_WALLET,
+                payload: {
+                    euro: response.amountEuro,
+                    DK: response.amountBtc,
+                }
+            })
+        }
+    }).catch(error => {
+        console.log(error)
+    });
+}

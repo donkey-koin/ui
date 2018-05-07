@@ -13,6 +13,12 @@ export default (state = initState, action) => {
                 ...state,
                 balanceEuro: action.payload.amount + state.balanceEuro
             };
+        case types.UPDATE_WALLET:
+            return {
+                ...state,
+                balanceEuro: action.payload.euro,
+                balanceDK: action.payload.DK
+            };
         default:
             return state;
     }

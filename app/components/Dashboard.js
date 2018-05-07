@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login, depositToWallet } from '../actions';
+import { login, depositToWallet, buyKoin, updateWallet } from '../actions';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { footer } from '../styles/footer.scss';
 import { Chart } from './Chart/ChartComponent'
 import { Wallet } from './Wallet'; 
+import { Transaction } from './Transaction';
  
 export class Dashboard extends Component {
 
@@ -43,18 +44,23 @@ export class Dashboard extends Component {
     render() {
         return (
             <div className="container-fluid">
-                Turboinba
-                <Chart />
-                <button onClick={() => this.onSztynks()}>sztynks1</button>
+                {/* <button onClick={() => this.onSztynks()}>sztynks1</button> */}
                 <div className="row">
                     <div className="col-3 transactionBar">
-                        <Wallet balanceEuro={this.props.wallet.balanceEuro}
+                        <div><Wallet balanceEuro={this.props.wallet.balanceEuro}
                             balanceDK={this.props.wallet.balanceDK}
                             depositHandler={this.props.actions.depositToWallet}
                             user={this.props.user.loggedUser}
-                        />
+                        /></div>
+                        <div>
+                            <Transaction user={this.props.user.loggedUser}
+                                buyKoinHandler={this.props.actions.buyKoin}    
+                                updateWalletHandler={this.props.actions.updateWallet}
+                            />
+                        </div>
                     </div>  
                     <div className="col-9">
+                        <Chart />
                     </div>  
                 </div>
                 <div className="row">
