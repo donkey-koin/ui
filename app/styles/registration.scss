@@ -2,7 +2,7 @@ $form-bg: #13232f;
 $br: 4px;
 $gray-light: #a0b3b0;
 
-form {
+.form {
     background:rgba($form-bg,.9);
     padding: 40px;
     max-width:600px;
@@ -12,4 +12,53 @@ form {
     color:$gray-light;
 }
 
+
+.modal {
+    position: fixed; /* Stay in place */
+    top: 0;
+    left: 0;
+    z-index: 100; /* Sit on top */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modalCtx {
+    position: fixed;
+    top: 50%;
+    left:50%;
+    //margin: auto;
+    transform: translate(-50%,-50%);
+    padding: 0;
+    text-align: center;
+    border: 1px solid #888;
+    width: 50%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+/* Modal Content */
+.modalBody {
+    background-color: white;
+    padding: 0;
+    h3 {
+        padding: 1rem 1rem 1rem 1rem;
+        margin: 0;    
+    }
+}
+
+.modalFooter {
+    padding: 1rem 16px;
+    background-color: $form-bg;
+    color: white;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 50%; opacity: 1}
+}
 
