@@ -14,7 +14,8 @@ export default class Registration extends Component {
             "password": '',
             "email": '',
             "password-confirmation": '',
-            "akzeptierung": ''
+            "akzeptierung": '',
+            "isLoading": false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -109,6 +110,7 @@ export default class Registration extends Component {
             "email": this.state.email
         }
         console.log(body);
+        this.state.isLoading = true;
         fetch('http://localhost:5000/register',{
             body: JSON.stringify(body),
             headers: {
@@ -116,11 +118,14 @@ export default class Registration extends Component {
             },
             method: 'POST'
         })
-        .then(res => res)    
         .then(res => {
             console.log(res);
+            if(res.error) {
+                console.log(res.error);
+            }
             console.log('registered');
-        });
+        })
+        .catch(error => console.log(error));
 
         event.preventDefault();
     }
@@ -133,24 +138,23 @@ export default class Registration extends Component {
                     <h5>Join Donkey Koin Exchange.</h5>
                     <div className="form-group">
                         <label htmlFor="username">Username:</label>
-                        <input id="username" className="form-control" onBlur={(e) => this.handleInputChange(e, "username")} type="text" checked="this.state.username" required />
+                        <input id="username" className="form-control" onBlur={(e) => this.handleInputChange(e, "username")} type="text" checked="this.state.username" />
                         {this.displayValidationErrors("username")}
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email:</label>
-                        <input id="email" className="form-control" type="email" onBlur={(e) => this.handleInputChange(e, "email")} required />
+                        <input id="email" className="form-control" type="email" onBlur={(e) => this.handleInputChange(e, "email")}/>
                         {this.displayValidationErrors("email")}
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>
-                        <input id="password" className="form-control" type="password" onBlur={(e) => this.handleInputChange(e, "password")} required aria-describedby="password-help" />
+                        <input id="password" className="form-control" type="password" onBlur={(e) => this.handleInputChange(e, "password")} aria-describedby="password-help" />
                         <small id="password-help" className="form-text text-muted">Must contain at least 6 characters</small>
                         {this.displayValidationErrors("password")}
-
                     </div>
                     <div className="form-group">
                         <label htmlFor="password-confirmation">Confirm Password:</label>
-                        <input id="password-confirmation" type="password" className="form-control" onBlur={(e) => this.handleInputChange(e, "password-confirmation")} required />
+                        <input id="password-confirmation" type="password" className="form-control" onBlur={(e) => this.handleInputChange(e, "password-confirmation")} />
                         {this.displayValidationErrors("password-confirmation")}
                     </div>
                     <div className="checkbox">
@@ -162,9 +166,9 @@ export default class Registration extends Component {
                         {this.displayValidationErrors("akzeptierung")}
                     </div>
                     <input type="submit" value="Submit" className="btn btn-primary" disabled={!this.isFormValid()} />
-                    <br/>
-                    <br/>
-                    <Link to="/">Already have an account?</Link>
+                    <div>
+                        <Link to="/">Already have an account?</Link>
+                    </div>
                 </form>
             </div>
         )
