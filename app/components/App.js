@@ -24,7 +24,7 @@ export class App extends Component {
     render() { 
         return (
             <div className={appStyles.mainContainer}>
-                <div className={this.shouldBeRendered()   ?  dashboardStyles.hideDashboard : dashboardStyles.showDashboard }>{ Routes }</div>
+                <div className={this.shouldBeRendered() ? dashboardStyles.hideDashboard : dashboardStyles.showDashboard }>{ Routes }</div>
                 {   
                     this.shouldBeRendered() && <div className={dashboardStyles.loginComponent}>
                         <LoginComponent loginError={this.props.user.isError} loginInProgress={this.props.user.loginInProgress} loginHandler={this.signIn}/>

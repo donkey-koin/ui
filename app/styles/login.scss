@@ -8,6 +8,7 @@
 .title { 
     text-align: center;
     padding: 20px, 0px, 20px;
+    margin-bottom: 40px;
 
     h2 { 
         font-family: 'Courier New', Courier, monospace;
@@ -19,6 +20,7 @@
 }
 
 .container {
+    padding: 50px;
     width: 50%;
     height: 400px;
     background: #fff;
@@ -26,11 +28,14 @@
     border: 2px solid #fff;
     border-radius: 5px; 
     box-shadow: 0, 15px, 40px, rgba(0,0,0,.5);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .loginForm {
     width: 100%;
-    padding: 50px 40px;
     box-sizing: border-box; 
     height: 400px;
 
@@ -63,7 +68,7 @@
 
     button:hover {
         color: #262626; 
-        background:  #32CD32;
+        background:  #696969;
         transition: background 250ms ease;
     }
 
@@ -79,7 +84,7 @@
     }
 
     input:focus { 
-        border-bottom: 2px solid#32CD32;
+        border-bottom: 2px solid#696969;
         transition: border-bottom 100ms ease;
     }
 

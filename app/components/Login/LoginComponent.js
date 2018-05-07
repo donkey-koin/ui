@@ -47,7 +47,7 @@ export default class Login extends Component {
     // TODO: fix login loader, handle errors, center form
     render() {
         return(
-            <div className={loginStyles.loginScreen}>
+            <div className={loginStyles.loginScreen + " container-fluid"}>
                     <div className={loginStyles.container}>
                         <div className={loginStyles.title}><h2>Donkey Koin Exchange</h2></div>
                         <div className={loginStyles.loginForm}> 
