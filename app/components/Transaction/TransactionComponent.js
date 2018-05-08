@@ -26,8 +26,8 @@ export default class Transaction extends Component {
         return(
             <div className="container-fluid">
                 <span className="row">Buy DK</span>
-                <span className="row"><input type="number" onChange={this.handleAmountChange} placeholder="Enter amount..." /></span>
-                <span className="row"><button onClick={() => this.makeBuyTransaction()}>Buy DonkeyKoin</button></span>
+                <div className="row"><input type="number" onChange={this.handleAmountChange} placeholder="Enter amount..." /></div>
+                <span className="row"><button className="btn" onClick={() => this.makeBuyTransaction()}>Buy DonkeyKoin</button></span>
             </div>
         )
     }

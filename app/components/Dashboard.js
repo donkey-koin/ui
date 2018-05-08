@@ -4,6 +4,8 @@ import { login, depositToWallet, buyKoin, updateWallet } from '../actions';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { footer } from '../styles/footer.scss';
+import * as dashboardStyle  from '../styles/dashboard.scss';
+
 import { Chart } from './Chart/ChartComponent'
 import { Wallet } from './Wallet'; 
 import { Transaction } from './Transaction';
@@ -49,7 +51,7 @@ export class Dashboard extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className={dashboardStyle.dashboard + " container-fluid"}>
                 {/* <button onClick={() => this.onSztynks()}>sztynks1</button> */}
                 <div className="row">
                     <div className="col-3 transactionBar">

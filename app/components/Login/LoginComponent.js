@@ -30,7 +30,7 @@ export default class Login extends Component {
 
     getButtonLoading = () => {
         return (
-            <button> 
+            <button className="btn"> 
                 <p>Logging in... <div className={loginStyles.loader}></div></p>
             </button>
         )
@@ -38,7 +38,7 @@ export default class Login extends Component {
 
     getButtonNotLoading = () => {
         return (
-            <button onClick={() => this.props.loginHandler(this.state.username,this.state.password)}> 
+            <button className="btn" onClick={() => this.props.loginHandler(this.state.username,this.state.password)}> 
                 <p>Login</p>
             </button>
         )
@@ -49,10 +49,10 @@ export default class Login extends Component {
         return(
             <div className={loginStyles.loginScreen + " container-fluid"}>
                     <div className={loginStyles.container}>
-                        <div className={loginStyles.title}><h2>Donkey Koin Exchange</h2></div>
+                        <div className={loginStyles.title + " page-header"}><h2>Donkey Koin Exchange</h2></div>
                         <div className={loginStyles.loginForm}> 
-                            <div className="row"><input type="text" onChange={this.handleLoginChange} placeholder="Username" /></div>
-                            <div className="row"><input type="password" onChange={this.handlePasswordChange} placeholder="Password" /></div>
+                            <div className="row form-group"><input type="text" onChange={this.handleLoginChange} placeholder="Username" /></div>
+                            <div className="row form-group"><input type="password" onChange={this.handlePasswordChange} placeholder="Password" /></div>
                             <div className="row">
                                 {this.props.loginInProgress ? this.getButtonLoading() : this.getButtonNotLoading()}
                             </div>
