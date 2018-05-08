@@ -14,8 +14,10 @@ export class Dashboard extends Component {
         super(props)
     }
 
-    componentDidMount() {
-        this.props.actions.updateWallet(this.props.user.loggedUser)
+    componentDidUpdate(prevProps) {
+        if (!prevProps.user.loggedIn && this.props.user.loggedIn) {
+            this.props.actions.updateWallet(this.props.user.loggedUser)
+        }
     }
 
     onSztynks = () =>  {
