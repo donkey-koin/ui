@@ -36,39 +36,38 @@ export class Chart extends Component {
             isLoading: true,
             isError: false
         }
-
-        setInterval(() => {
-            this.setState({ ...this.state, isLoading: true });
-
-            fetch("http://localhost:5000/last", {
-                headers: {
-                    'content-type': 'application/json',
-                },
-                method: 'GET'
-            })
-                .then(res => res.json())
-                .then(res => {
-                    this.setState({
-                        ...this.state,
-                        data: this.handleResponse(res),
-                        isError: false
-                    });
-                    console.log(this.state.data);
-                    this.tableBody();
-                })
-                .catch(error => {
-                    console.log(error);
-                    this.setState({ ...this.state, isError: true });
-                });
-            this.setState({ ...this.state, isLoading: false });
-            // this.forceUpdate();
-            // console.log(this.state.data);            
-        }, 10000);
-
     }
 
     componentDidMount() {
+        setInterval(() => {
+            this.setState({ ...this.state, isLoading: true });
+            if (this.refs.statistics) {
 
+                fetch("http://localhost:5000/last", {
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    method: 'GET'
+                })
+                    .then(res => res.json())
+                    .then(res => {
+                        this.setState({
+                            ...this.state,
+                            data: this.handleResponse(res),
+                            isError: false
+                        });
+                        // console.log(this.state.data);
+                        this.tableBody();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        this.setState({ ...this.state, isError: true });
+                    });
+                this.setState({ ...this.state, isLoading: false });
+            }
+            // this.forceUpdate();
+            // console.log(this.state.data);            
+        }, 10000);
     }
 
     handleResponse = (response) => {
@@ -79,10 +78,10 @@ export class Chart extends Component {
                 value: response[i].cents,
                 date: response[i].date
             });
-            console.log(response[i]);
+            // console.log(response[i]);
         }
 
-        console.log(ret);
+        // console.log(ret);
         return ret;
     }
 
@@ -110,31 +109,31 @@ export class Chart extends Component {
     }
 
     tableBody = () => {
-        console.log(this.state.data);
+        // console.log(this.state.data);
         const element = (
             <table className="table table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    this.state.data.map(item => <tr key={item.index}>
-                        <td>{item.index}</td>
-                        <td>{item.date}</td>
-                        <td>{item.value}</td>
-                    </tr>)
-                }
-            </tbody>
-        </table>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        this.state.data.map(item => <tr key={item.index}>
+                            <td>{item.index}</td>
+                            <td>{item.date}</td>
+                            <td>{item.value}</td>
+                        </tr>)
+                    }
+                </tbody>
+            </table>
         );
-        console.log(element);
-
-        ReactDom.render(element, document.getElementById('tbodyStatistics'));
-
+        // console.log(element);
+        if (this.refs.statistics) {
+            ReactDom.render(element, document.getElementById('tbodyStatistics'));
+        }
     }
 
     render() {
@@ -142,7 +141,7 @@ export class Chart extends Component {
             <div className={chartStyles.chartDiv}>
                 {
                     this.state.isError ? <p>Error</p> :
-                    <div id="tbodyStatistics" />
+                        <div id="tbodyStatistics" ref="statistics" />
                 }
             </div>
         )
