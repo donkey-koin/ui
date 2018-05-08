@@ -1,75 +1,149 @@
 import React, { Component } from 'react';
-import { Line } from 'react-chartjs-2';
+import ReactDom from 'react-dom';
 import * as chartStyles from '../../styles/chart.scss';
 
+// const dataset =
+//     {
+//         label: 'Value',
+//         fill: false,
+//         lineTension: 0.1,
+//         backgroundColor: 'rgba(75,192,192,0.4)',
+//         borderColor: 'rgba(75,192,192,1)',
+//         borderCapStyle: 'butt',
+//         borderDash: [],
+//         borderDashOffset: 0.0,
+//         borderJoinStyle: 'miter',
+//         pointBorderColor: 'rgba(75,192,192,1)',
+//         pointBackgroundColor: '#fff',
+//         pointBorderWidth: 1,
+//         pointHoverRadius: 5,
+//         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+//         pointHoverBorderColor: 'rgba(220,220,220,1)',
+//         pointHoverBorderWidth: 2,
+//         pointRadius: 1,
+//         pointHitRadius: 10,
+//         data: []
 
-const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-        {
-            label: 'Value',
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40]
-        }
-    ]
-};
+//     };
 
-
-let options = {
-    scaleShowGridLines: true,
-    scaleGridLineColor: "rgba(0,0,0,.05)",
-    scaleGridLineWidth: 1,
-    scaleShowHorizontalLines: true,
-    scaleShowVerticalLines: true,
-    bezierCurve: true,
-    bezierCurveTension: 0.4,
-    pointDot: true,
-    pointDotRadius: 4,
-    pointDotStrokeWidth: 1,
-    pointHitDetectionRadius: 20,
-    datasetStroke: true,
-    datasetStrokeWidth: 2,
-    datasetFill: true,
-    legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>",
-    offsetGridLines: false
-};
 export class Chart extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            data: data,
+            data: [],
             width: 400,
-            height: 200
+            height: 200,
+            isLoading: true,
+            isError: false
         }
-        // console.log(this.state.data);
+
+        setInterval(() => {
+            this.setState({ ...this.state, isLoading: true });
+
+            fetch("http://localhost:5000/last", {
+                headers: {
+                    'content-type': 'application/json',
+                },
+                method: 'GET'
+            })
+                .then(res => res.json())
+                .then(res => {
+                    this.setState({
+                        ...this.state,
+                        data: this.handleResponse(res),
+                        isError: false
+                    });
+                    console.log(this.state.data);
+                    this.tableBody();
+                })
+                .catch(error => {
+                    console.log(error);
+                    this.setState({ ...this.state, isError: true });
+                });
+            this.setState({ ...this.state, isLoading: false });
+            // this.forceUpdate();
+            // console.log(this.state.data);            
+        }, 10000);
+
     }
 
-    // getInitialState() {
-    //     return {
-    //         data: data()
-    //     };
-    // }
+    componentDidMount() {
+
+    }
+
+    handleResponse = (response) => {
+        let ret = [];
+        for (let i = 0; i < response.length; i++) {
+            ret.push({
+                index: i,
+                value: response[i].cents,
+                date: response[i].date
+            });
+            console.log(response[i]);
+        }
+
+        console.log(ret);
+        return ret;
+    }
+
+    getValues = (response) => {
+        let ret = [];
+        for (let i = 0; i < response.length; i++) {
+            ret.push(Number(Number(response[i].cents) / 100));
+            console.log(response[i].cents);
+        }
+
+        console.log(ret);
+        return ret;
+    }
+
+    getLabels = (response) => {
+        console.log(response[0]);
+        let ret = [];
+        for (let i = 0; i < response.length; i++) {
+            ret.push(response[i].date);
+            console.log(response[i].date);
+        }
+
+        console.log(ret);
+        return ret;
+    }
+
+    tableBody = () => {
+        console.log(this.state.data);
+        const element = (
+            <table className="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    this.state.data.map(item => <tr key={item.index}>
+                        <td>{item.index}</td>
+                        <td>{item.date}</td>
+                        <td>{item.value}</td>
+                    </tr>)
+                }
+            </tbody>
+        </table>
+        );
+        console.log(element);
+
+        ReactDom.render(element, document.getElementById('tbodyStatistics'));
+
+    }
+
     render() {
         return (
             <div className={chartStyles.chartDiv}>
-                <Line data={data} />
+                {
+                    this.state.isError ? <p>Error</p> :
+                    <div id="tbodyStatistics" />
+                }
             </div>
         )
     }
