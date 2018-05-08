@@ -8,7 +8,7 @@ $gray-light: #a0b3b0;
     max-width:600px;
     margin:40px auto;
     border-radius:$br;
-    box-shadow:0 4px 10px 4px rgba($form-bg,.3);
+    // box-shadow:0 4px 10px 4px rgba($form-bg,.3);
     color:$gray-light;
 }
 
@@ -35,7 +35,7 @@ $gray-light: #a0b3b0;
     text-align: center;
     border: 1px solid #888;
     width: 50%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
     animation-duration: 0.4s;
 }
