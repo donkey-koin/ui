@@ -2,7 +2,7 @@
     margin: auto;
     width: 100%;
     height: 100%;
-	background-color: #212529;
+	background-color: #474A54;
 }
 
 .title { 
@@ -23,7 +23,7 @@
 
 .container {
     padding: 50px;
-    width: 50%;
+    width: 45%;
     height: 400px;
     background: #fff;
     margin: 0 auto;
@@ -34,14 +34,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.dualipa {
-    color:black !important;
-}
-
-.xd {
-    color: black !important;
 }
 
 .loginForm {
@@ -87,7 +79,7 @@
         border-bottom: 2px solid black;
         outline: none;
         height: 40px;
-        width: 50%;
+        width: 60%;
         margin-left: auto;
         margin-right: auto;
     }

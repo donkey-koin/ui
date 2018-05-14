@@ -168,23 +168,23 @@ export default class Registration extends Component {
                     <h5>Join Donkey Koin Exchange.</h5>
                     <div className="form-group">
                         <label htmlFor="username">Username:</label>
-                        <input id="username" className="form-control" autoComplete="username" onBlur={(e) => this.handleInputChange(e, "username")} type="text" checked="this.state.username" />
+                        <input id="username"  autoComplete="username" onBlur={(e) => this.handleInputChange(e, "username")} type="text" checked="this.state.username" />
                         {this.displayValidationErrors("username")}
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email:</label>
-                        <input id="email" className="form-control" type="email" autoComplete="email" onBlur={(e) => this.handleInputChange(e, "email")} />
+                        <input id="email"  type="email" autoComplete="email" onBlur={(e) => this.handleInputChange(e, "email")} />
                         {this.displayValidationErrors("email")}
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password:</label>
-                        <input id="password" className="form-control" autoComplete="new-password" type="password" onBlur={(e) => this.handleInputChange(e, "password")} aria-describedby="password-help" />
+                        <input id="password" autoComplete="new-password" type="password" onBlur={(e) => this.handleInputChange(e, "password")} aria-describedby="password-help" />
                         <small id="password-help" className="form-text text-muted">Must contain at least 6 characters</small>
                         {this.displayValidationErrors("password")}
                     </div>
-                    <div className="form-group">
+                    <div>
                         <label htmlFor="password-confirmation">Confirm Password:</label>
-                        <input id="password-confirmation" type="password" autoComplete="new-password" className="form-control" onBlur={(e) => this.handleInputChange(e, "password-confirmation")} />
+                        <input id="password-confirmation" type="password" autoComplete="new-password"  onBlur={(e) => this.handleInputChange(e, "password-confirmation")} />
                         {this.displayValidationErrors("password-confirmation")}
                     </div>
                     <div className="checkbox">

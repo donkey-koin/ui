@@ -60,11 +60,24 @@ $gray-light: #a0b3b0;
     margin-top: 1rem;
 }
 
-
-
 /* Add Animation */
 @keyframes animatetop {
     from {top: -300px; opacity: 0}
     to {top: 50%; opacity: 1}
 }
 
+input { 
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;
+    height: 40px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input:focus { 
+    border-bottom: 2px solid#696969;
+    transition: border-bottom 100ms ease;
+}
