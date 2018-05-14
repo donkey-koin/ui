@@ -51,14 +51,14 @@ export default class Login extends Component {
                     <div className={loginStyles.container}>
                         <div className={loginStyles.title + " page-header"}><h2>Donkey Koin Exchange</h2></div>
                         <div className={loginStyles.loginForm}> 
-                            <div className="row form-group"><input type="text" onChange={this.handleLoginChange} placeholder="Username" /></div>
-                            <div className="row form-group"><input type="password" onChange={this.handlePasswordChange} placeholder="Password" /></div>
+                            <div className="row"><input type="text" onChange={this.handleLoginChange} placeholder="Username" /></div>
+                            <div className="row"><input type="password" onChange={this.handlePasswordChange} placeholder="Password" /></div>
                             <div className="row">
                                 {this.props.loginInProgress ? this.getButtonLoading() : this.getButtonNotLoading()}
                             </div>
                             {this.props.loginError && <div className="row"><p className={loginStyles.errorMessage}>Invalid login/password. Please double-check and try again.</p></div>}
                             <div className="row">
-                                <div className={loginStyles.loginActions}>Don't have an account yet? <Link to="/register">Register</Link></div>
+                                <div className={loginStyles.loginActions + " dualipa"}><span className="xd"> Don't have an account yet?</span> <Link to="/register">Register</Link></div>
                                 {/* &nbsp;
                                 <div className="col-xs-6"><a href="#">Forget password</a></div> */}
                             </div>

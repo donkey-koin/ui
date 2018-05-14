@@ -19,7 +19,9 @@ export default class Transaction extends Component {
     }
 
     makeBuyTransaction = () => {
-        this.props.buyKoinHandler(this.props.user,this.state.moneyAmount).then(this.props.updateWalletHandler(this.props.user))
+        this.props.buyKoinHandler(this.props.user,this.state.moneyAmount)
+        setTimeout( () => this.props.updateWalletHandler(this.props.user)
+            , 1500);
     }
 
     render() {

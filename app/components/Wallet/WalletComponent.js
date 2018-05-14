@@ -14,7 +14,7 @@ export default class Wallet extends Component {
                 <span className="row">Balance</span>
                 <span className="row">EURO: {this.props.balanceEuro}</span>
                 <span className="row">DONKEY KOIN: {this.props.balanceDK}</span>
-                <span className="row"><button className="btn" onClick={() => this.props.depositHandler(this.props.user,50)}>DEPOSIT</button>&nbsp;<button className="btn" onClick={this.props.withdrawnHandler}>WITHDRAWN</button></span>
+                <span className="row"><button className="btn" onClick={() => this.props.depositHandler(this.props.user,1000)}>DEPOSIT</button>&nbsp;<button className="btn" onClick={this.props.withdrawnHandler}>WITHDRAWN</button></span>
                 <hr color="white"/>
             </div>
         )
