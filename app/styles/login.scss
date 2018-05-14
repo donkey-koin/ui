@@ -10,7 +10,7 @@
     text-transform: uppercase;
 
     // padding: 20px, 0px, 20px;
-    margin-bottom: 40px;
+    margin-bottom: 0px;
 
     // h2 { 
     //     font-family: 'Courier New', Courier, monospace;
@@ -22,7 +22,7 @@
 }
 
 .container {
-    padding: 50px;
+    padding: 25px;
     width: 45%;
     height: 400px;
     background: #fff;
@@ -41,8 +41,9 @@
     box-sizing: border-box; 
     height: 400px;
 
-    button { 
+    button {
         margin-bottom: 20px;
+        margin-top: 15px;
         border: none;
         outline: none;
         height: 40px;
@@ -101,7 +102,7 @@
     margin: auto;
     font-weight: bold;
     color: red;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .loader {
