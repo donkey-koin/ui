@@ -106,10 +106,12 @@ export default class Registration extends Component {
 
     goBack = (event) => {
         event.preventDefault();
-        this.state.showModal = false;
-        this.state.registrationError = null;
-        this.state.successMessage = null;
-        this.forceUpdate();
+        this.setState({
+            ...this.state,
+            successMessage: null,
+            registrationError: null,
+            showModal: false
+        });
     }
 
     signIn = (event) => {
@@ -156,13 +158,14 @@ export default class Registration extends Component {
                 this.state.registrationError = error;
             });
 
-
         event.preventDefault();
     }
 
     render() {
         return (
             <div className={registrationStyles.form + " container-fluid"} >
+                {this.state.isLoading ? <div className={registrationStyles.fullscreen}><div className={registrationStyles.loader}></div></div>: null}
+
                 <form onSubmit={this.handleSubmit}>
                     <h1>Create new account</h1>
                     <h5>Join Donkey Koin Exchange.</h5>
