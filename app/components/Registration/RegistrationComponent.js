@@ -169,36 +169,43 @@ export default class Registration extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <h1>Create new account</h1>
                     <h5>Join Donkey Koin Exchange.</h5>
-                    <div className="form-group">
-                        <label htmlFor="username">Username:</label>
-                        <input id="username"  autoComplete="username" onBlur={(e) => this.handleInputChange(e, "username")} type="text" checked="this.state.username" />
+                    <div className="container">
+                        <div className="row">
+                            <input id="username" placeholder="Username"  autoComplete="username" onBlur={(e) => this.handleInputChange(e, "username")} type="text" checked="this.state.username" />
+                        </div>
                         {this.displayValidationErrors("username")}
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email:</label>
-                        <input id="email"  type="email" autoComplete="email" onBlur={(e) => this.handleInputChange(e, "email")} />
+
+                        <div className="row">
+                            <input id="email" placeholder="Email" type="email" autoComplete="email" onBlur={(e) => this.handleInputChange(e, "email")} />
+                        </div>
                         {this.displayValidationErrors("email")}
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password:</label>
-                        <input id="password" autoComplete="new-password" type="password" onBlur={(e) => this.handleInputChange(e, "password")} aria-describedby="password-help" />
-                        <small id="password-help" className="form-text text-muted">Must contain at least 6 characters</small>
+
+                        <div className="row">
+                            <input placeholder="Password" id="password" autoComplete="new-password" type="password" onBlur={(e) => this.handleInputChange(e, "password")} />
+                        </div>
+                        <div className="row">
+                            <small id="password-help" className={registrationStyles.small + " text-muted"}>Must contain at least 6 characters</small> 
+                        </div>
                         {this.displayValidationErrors("password")}
-                    </div>
-                    <div>
-                        <label htmlFor="password-confirmation">Confirm Password:</label>
-                        <input id="password-confirmation" type="password" autoComplete="new-password"  onBlur={(e) => this.handleInputChange(e, "password-confirmation")} />
+                        
+                        <div className={ "row "}>
+                            <input id="password-confirmation" placeholder="Confirm Password" type="password" autoComplete="new-password" onBlur={(e) => this.handleInputChange(e, "password-confirmation")} />
+                        </div>
                         {this.displayValidationErrors("password-confirmation")}
-                    </div>
-                    <div className="checkbox">
-                        <label><input id="akzeptierung" type="checkbox" onChange={(e) => this.handleInputChange(e, "akzeptierung")} /> I agree&nbsp;
-                        <Link to="/legal/terms" target="_blank">Terms And Conditions</Link>
-                            &nbsp;and&nbsp;
-                        <Link to="/legal/privacy" target="_blank">Privacy Policy</Link>.
-                        </label>
+
+                        <div className="checkbox row">
+                            <label><input id="akzeptierung" type="checkbox" onChange={(e) => this.handleInputChange(e, "akzeptierung")} /> I agree&nbsp;
+                            <Link to="/legal/terms" target="_blank">Terms And Conditions</Link>
+                                &nbsp;and&nbsp;
+                            <Link to="/legal/privacy" target="_blank">Privacy Policy</Link>.
+                            </label>
+                        </div>
                         {this.displayValidationErrors("akzeptierung")}
+                        <div className="row">
+                            <input type="submit" value="Submit" className="btn btn-primary" disabled={!this.isFormValid()} />
+                        </div>
                     </div>
-                    <input type="submit" value="Submit" className="btn btn-primary" disabled={!this.isFormValid()} />
+
                 </form>
                 <div className={registrationStyles.link}>
                     <Link to="/">Already have an account?</Link>

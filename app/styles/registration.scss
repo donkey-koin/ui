@@ -9,7 +9,15 @@ $app-bg: #474A54;
     margin:40px auto;
     border-radius:$br;
     color: black;
+    h5{
+        padding-bottom: 1rem;
+    }
+    small{
+        margin-top: 0;
+    }
 }
+
+
 
 .modal {
     position: fixed; /* Stay in place */
@@ -32,9 +40,6 @@ $app-bg: #474A54;
     border: 1px solid #888;
     width: 50%;
     color: black;
-    // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    // animation-name: animatetop;
-    // animation-duration: 0.4s;
 }
 
 /* Modal Content */
@@ -54,16 +59,21 @@ $app-bg: #474A54;
 }
 
 
-input { 
+input:not([type='checkbox']) {    
     margin-bottom: 20px;
     border: none;
     border-bottom: 2px solid black;
+    width: 60%;
     outline: none;
-    height: 40px;
-    width: 50%;
-    margin-left: auto;
+    // 0 to left align
+    // margin-left: 0;
     margin-right: auto;
+    height: 40px;
 }
+// .small {
+//     width: 100%;
+//     text-align: right!important;
+// }
 
 input:focus { 
     border-bottom: 2px solid#696969;
