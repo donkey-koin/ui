@@ -58,6 +58,10 @@ module.exports = {
                 loader: 'style-loader!css-loader' 
             },
             {
+                test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+                loader: 'url-loader'
+            },
+            {
                 test: /\.scss$/,
                 loader: 'style!css?modules&localIdentName=[name]---[local]---[hash:base64:5]!sass'
             },

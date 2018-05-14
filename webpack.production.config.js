@@ -93,7 +93,11 @@ module.exports = {
         }, {
             test: /\.(ttf|eot|svg)(\?[a-z0-9#=&.]+)?$/,
             loader: 'file'
-        }]
+        },
+            {
+                test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+                loader: 'url-loader'
+            }]
     },
     postcss: [
         require('autoprefixer')
