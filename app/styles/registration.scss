@@ -9,11 +9,19 @@ $app-bg: #474A54;
     margin:40px auto;
     border-radius:$br;
     color: black;
+    text-align: center;
     h5{
         padding-bottom: 1rem;
+
+    }
+    label,h1,h5 {
+        margin-left: auto;
+        margin-right: auto;       
     }
     small{
         margin-top: 0;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -65,15 +73,17 @@ input:not([type='checkbox']) {
     border-bottom: 2px solid black;
     width: 60%;
     outline: none;
-    // 0 to left align
-    // margin-left: 0;
-    margin-right: auto;
     height: 40px;
 }
 // .small {
 //     width: 100%;
 //     text-align: right!important;
 // }
+
+input{
+    margin-left: auto;
+    margin-right: auto;
+}
 
 input:focus { 
     border-bottom: 2px solid#696969;

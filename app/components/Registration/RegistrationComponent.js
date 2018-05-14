@@ -167,9 +167,13 @@ export default class Registration extends Component {
                 {this.state.isLoading ? <div className={registrationStyles.fullscreen}><div className={registrationStyles.loader}></div></div>: null}
 
                 <form onSubmit={this.handleSubmit}>
-                    <h1>Create new account</h1>
-                    <h5>Join Donkey Koin Exchange.</h5>
                     <div className="container">
+                        <div className="row">
+                            <h1>Create new account</h1>
+                        </div>
+                        <div className="row">
+                            <h5>Join Donkey Koin Exchange.</h5>
+                        </div>
                         <div className="row">
                             <input id="username" placeholder="Username"  autoComplete="username" onBlur={(e) => this.handleInputChange(e, "username")} type="text" checked="this.state.username" />
                         </div>
