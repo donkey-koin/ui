@@ -1,17 +1,15 @@
-$form-bg: #13232f;
+$form-bg: white;
 $br: 4px;
-$gray-light: #a0b3b0;
+$app-bg: #474A54;
 
 .form {
-	background-color: #212529;
+	background-color: $form-bg;
     padding: 40px;
     max-width:600px;
     margin:40px auto;
     border-radius:$br;
-    // box-shadow:0 4px 10px 4px rgba($form-bg,.3);
-    color:$gray-light;
+    color: black;
 }
-
 
 .modal {
     position: fixed; /* Stay in place */
@@ -21,8 +19,6 @@ $gray-light: #a0b3b0;
     width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
 .modalCtx {
@@ -35,36 +31,28 @@ $gray-light: #a0b3b0;
     text-align: center;
     border: 1px solid #888;
     width: 50%;
+    color: black;
     // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    animation-name: animatetop;
-    animation-duration: 0.4s;
+    // animation-name: animatetop;
+    // animation-duration: 0.4s;
 }
 
 /* Modal Content */
 .modalBody {
     background-color: white;
-    padding: 0;
-    h3 {
-        padding: 1rem 1rem 1rem 1rem;
-        margin: 0;    
-    }
+    color: black;
+    padding: 1rem 1rem 1rem 1rem;
 }
 
 .modalFooter {
     padding: 1rem 16px;
-    background-color: $form-bg;
-    color: white;
+    background-color: $app-bg;
 }
 
 .link {
     margin-top: 1rem;
 }
 
-/* Add Animation */
-@keyframes animatetop {
-    from {top: -300px; opacity: 0}
-    to {top: 50%; opacity: 1}
-}
 
 input { 
     margin-bottom: 20px;

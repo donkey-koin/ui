@@ -211,13 +211,13 @@ export default class Registration extends Component {
                                 {
                                     this.state.registrationError !== null
                                         ?
-                                        <h3>
+                                        <h2>
                                             {this.state.registrationError}
-                                        </h3>
+                                        </h2>
                                         :
-                                        <h3>
+                                        <h2>
                                             {this.state.successMessage}
-                                        </h3>
+                                        </h2>
                                 }
                             </div>
                             <div className={registrationStyles.modalFooter}>
