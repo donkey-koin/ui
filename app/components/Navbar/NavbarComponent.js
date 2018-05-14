@@ -10,10 +10,8 @@ export default class Navbar extends Component {
     render() {
         return (
             <div className={navbarStyles.navbar + " container-fluid"}>
-                <div>
                     <div className={navbarStyles.profileHeader}>Dashboard</div>
-                    <div className={navbarStyles.logoutHeader}><Link to="/" onClick={this.props.logoutHandler}>Logout</Link></div>
-                </div>
+                    <div className={navbarStyles.logoutHeader}><Link to="/" style={{ textDecoration: 'none', color: '#474A54' }} onClick={this.props.logoutHandler}>Logout</Link></div>
             </div>
         )
     }

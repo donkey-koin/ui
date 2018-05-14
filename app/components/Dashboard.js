@@ -59,7 +59,7 @@ export class Dashboard extends Component {
         return (
             <div className={dashboardStyle.dashboard + " container-fluid"}>
                 {/* <button onClick={() => this.onSztynks()}>sztynks1</button> */}
-                <div><Navbar logoutHandler={this.logout}/></div>
+                <Navbar logoutHandler={this.logout}/>
                 <div className="row">
                     <div className="col-3 transactionBar">
                         <div><Wallet balanceEuro={this.props.wallet.balanceEuro}
