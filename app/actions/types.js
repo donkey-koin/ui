@@ -2,6 +2,7 @@
 export const LOGIN = 'LOGIN';
 export const LOGIN_SUCCESSFUL = 'LOGIN_SUCCESSFUL'
 export const LOGIN_FAILURE = 'LOGIN FAILURE'
+export const LOGOUT = 'LOGOUT'
 
 // WALET ACTIONS 
 export const DEPOSIT_TO_WALLET = 'DEPOSIT_TO_WALLET';

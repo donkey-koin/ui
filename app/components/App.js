@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 
 
 export class App extends Component {
-    
+
     constructor(props) {
         super(props)
     }
@@ -21,11 +21,11 @@ export class App extends Component {
 
     shouldBeRendered = () => !this.props.user.loggedIn && ['/register', '/legal/privacy', '/legal/terms'].indexOf(this.props.location.pathname) < 0
 
-    render() { 
+    render() {
         return (
             <div className={appStyles.mainContainer}>
                 <div className={this.shouldBeRendered() ? dashboardStyles.hideDashboard : dashboardStyles.showDashboard }>{ Routes }</div>
-                {   
+                {
                     this.shouldBeRendered() && <div className={dashboardStyles.loginComponent}>
                         <LoginComponent loginError={this.props.user.isError} loginInProgress={this.props.user.loginInProgress} loginHandler={this.signIn}/>
                     </div>

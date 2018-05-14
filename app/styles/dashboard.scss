@@ -3,18 +3,19 @@
 	height: 100%;
 }
 
-.showDashboard { 
+.showDashboard {
 	height: 100%;
 }
 
-.hideDashboard { 
+.hideDashboard {
 	display: none;
 }
 
-.dashboard{
+.dashboard {
 	background-color: #212529;
 	color: #fff;
-	border-color: #fff;	
+	border-color: #fff;
     border-top: 1px solid white;
-
+	padding-right: 0 !important;
+	padding-left: 0 !important;
 }

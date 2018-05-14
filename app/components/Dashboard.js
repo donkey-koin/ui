@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login, depositToWallet, buyKoin, updateWallet } from '../actions';
+import { login, depositToWallet, buyKoin, updateWallet, logout } from '../actions';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { footer } from '../styles/footer.scss';
@@ -9,6 +9,8 @@ import * as dashboardStyle  from '../styles/dashboard.scss';
 import { Chart } from './Chart/ChartComponent'
 import { Wallet } from './Wallet'; 
 import { Transaction } from './Transaction';
+
+import Navbar from "./Navbar/NavbarComponent";
  
 export class Dashboard extends Component {
 
@@ -20,6 +22,10 @@ export class Dashboard extends Component {
         if (!prevProps.user.loggedIn && this.props.user.loggedIn) {
             this.props.actions.updateWallet(this.props.user.loggedUser)
         }
+    }
+
+    logout = () => {
+        this.props.actions.logout()
     }
 
     onSztynks = () =>  {
@@ -53,6 +59,7 @@ export class Dashboard extends Component {
         return (
             <div className={dashboardStyle.dashboard + " container-fluid"}>
                 {/* <button onClick={() => this.onSztynks()}>sztynks1</button> */}
+                <div><Navbar logoutHandler={this.logout}/></div>
                 <div className="row">
                     <div className="col-3 transactionBar">
                         <div><Wallet balanceEuro={this.props.wallet.balanceEuro}
@@ -88,7 +95,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({ login, depositToWallet, buyKoin, updateWallet }, dispatch)
+    actions: bindActionCreators({ login, depositToWallet, buyKoin, updateWallet, logout}, dispatch)
 });
 
 export default connect(

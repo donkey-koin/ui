@@ -3,7 +3,7 @@ import { fetchJSON } from './apiUtils';
 
 // TODO: change url based on node env variable and extract to separate file
 export const login = (username, password) => dispatch => {
-    
+
     dispatch({
         type: types.LOGIN
     });
@@ -13,7 +13,7 @@ export const login = (username, password) => dispatch => {
         "password": password
     },"POST").then(response => {
         console.log(response);
-        if(response.error) { 
+        if(response.error) {
             dispatch({ type: types.LOGIN_FAILURE })
         } else {
             dispatch({
@@ -31,7 +31,7 @@ export const login = (username, password) => dispatch => {
 }
 
 export const depositToWallet = (username, amountToDeposit) => dispatch => {
-    
+
     dispatch({
         type: types.DEPOSIT_TO_WALLET
     });
@@ -41,10 +41,10 @@ export const depositToWallet = (username, amountToDeposit) => dispatch => {
         "moneyToDeposit": amountToDeposit
     },"POST").then(response => {
         console.log(response);
-        if(response.error) { 
+        if(response.error) {
             console.log(response.error)
             dispatch({ type: types.DEPOSIT_TO_WALLET_FAILURE })
-        } else { 
+        } else {
             dispatch({
                 type: types.DEPOSIT_TO_WALLET_SUCCESS,
                 payload: {
@@ -59,7 +59,7 @@ export const depositToWallet = (username, amountToDeposit) => dispatch => {
 }
 
 export const buyKoin = (username, moneyAmount) => dispatch => {
-    
+
     dispatch({
         type: types.BUY_KOIN
     });
@@ -69,10 +69,10 @@ export const buyKoin = (username, moneyAmount) => dispatch => {
         "moneyAmount": moneyAmount
     },"POST").then(response => {
         console.log(response);
-        if(response.error) { 
+        if(response.error) {
             console.log(response.error)
             dispatch({ type: types.BUY_KOIN_FAILURE })
-        } else { 
+        } else {
             dispatch({
                 type: types.BUY_KOIN_SUCCESS,
             })
@@ -84,14 +84,14 @@ export const buyKoin = (username, moneyAmount) => dispatch => {
 }
 
 export const updateWallet = (username) => dispatch => {
-    
+
     return fetchJSON("http://localhost:5000/walletContent", {
         "username": username
     },"POST").then(response => {
         console.log(response);
-        if(response.error) { 
+        if(response.error) {
             console.log(response.error)
-        } else { 
+        } else {
             dispatch({
                 type: types.UPDATE_WALLET,
                 payload: {
@@ -102,5 +102,12 @@ export const updateWallet = (username) => dispatch => {
         }
     }).catch(error => {
         console.log(error)
+    });
+}
+
+
+export const logout = () => dispatch => {
+    dispatch({
+        type: types.LOGOUT
     });
 }

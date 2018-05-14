@@ -31,6 +31,13 @@ export default (state = initState, action) => {
                 loginInProgress: false,
                 isError: true
             };
+        case types.LOGOUT:
+            return {
+                ...state,
+                loggedIn: false,
+                loggedUser: '',
+                token: undefined
+            };
         default:
             return state;
     }
