@@ -65,13 +65,11 @@
             }
         }
 
-       
-    }
-
-    button:hover {
-        color: #262626; 
-        background:  #696969;
-        transition: background 250ms ease;
+        button:hover {
+            color: #262626; 
+            background:  #696969;
+            transition: background 250ms ease;
+        }
     }
 
     input { 

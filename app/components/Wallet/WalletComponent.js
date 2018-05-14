@@ -10,12 +10,20 @@ export default class Wallet extends Component {
 
     render() {
         return(
-            <div className="container-fluid">
-                <span className="row">Balance</span>
-                <span className="row">EURO: {this.props.balanceEuro}</span>
-                <span className="row">DONKEY KOIN: {this.props.balanceDK}</span>
-                <span className="row"><button className="btn" onClick={() => this.props.depositHandler(this.props.user,1000)}>DEPOSIT</button>&nbsp;<button className="btn" onClick={this.props.withdrawnHandler}>WITHDRAWN</button></span>
-                <hr color="white"/>
+            <div className={walletStyles.wallet + " container-fluid"}>
+                <div className={walletStyles.title}>Balance</div> 
+                <span className="row">
+                    <span className={" col-6"}>EUR</span>
+                    <span className={walletStyles.rightCol + " col-6"}>{this.props.balanceEuro}</span>
+                </span>
+                <span className="row">
+                    <span className={" col-6"}>DonkeyKoin</span>
+                    <span className={walletStyles.rightCol + " col-6"}>{this.props.balanceDK}</span>
+                </span>
+                <span className={walletStyles.buttonsRow +  " row"}>
+                    <span className="col-6"><button className="btn btn-success" onClick={() => this.props.depositHandler(this.props.user,1000)}>DEPOSIT</button></span>
+                    <span className="col-6"><button className="btn btn-danger" onClick={this.props.withdrawnHandler}>WITHDRAWN</button></span>
+                </span>
             </div>
         )
     }
