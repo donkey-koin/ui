@@ -127,7 +127,10 @@ export default class Registration extends Component {
             "email": this.state.email
         }
         console.log(body);
-        this.state.isLoading = true;
+        this.setState({
+            ...this.state,
+            isLoading: true
+        });
 
         fetch('http://localhost:5000/register', {
             body: JSON.stringify(body),

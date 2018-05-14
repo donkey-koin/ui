@@ -26,7 +26,6 @@ $app-bg: #474A54;
 }
 
 
-
 .modal {
     position: fixed; /* Stay in place */
     top: 0;
@@ -74,6 +73,8 @@ input:not([type='checkbox']) {
     width: 60%;
     outline: none;
     height: 40px;
+    margin-left: auto;
+    margin-right: auto;  
 }
 // .small {
 //     width: 100%;
@@ -88,4 +89,36 @@ input{
 input:focus { 
     border-bottom: 2px solid#696969;
     transition: border-bottom 100ms ease;
+}
+.fullscreen{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;   
+    background: gray;
+    opacity: 0.8;
+}
+
+.loader{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    background-color: grey;
+    opacity: 0.8;
+    width: 30px;
+    height: 30px;
+    animation: spin 2s linear infinite;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
