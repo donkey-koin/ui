@@ -55,22 +55,19 @@ export class Chart extends Component {
                             data: this.handleResponse(res),
                             isError: false,
                             isLoading: false
-                            
+
                         });
-                        // console.log(this.state.data);
                         this.tableBody();
                     })
                     .catch(error => {
                         console.log(error);
                         this.setState({ ...this.state, isError: true, isLoading: false });
                     });
-            }
-            // this.forceUpdate();
-            // console.log(this.state.data);            
+            }            
         }, 10000);
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearInterval(this.intervalId);
     }
 
