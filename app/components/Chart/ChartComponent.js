@@ -39,8 +39,7 @@ export class Chart extends Component {
     }
 
     componentDidMount() {
-        setInterval(() => {
-            this.setState({ ...this.state, isLoading: true });
+        this.intervalId = setInterval(() => {
             if (this.refs.statistics) {
 
                 fetch("http://localhost:5000/last", {
@@ -54,20 +53,25 @@ export class Chart extends Component {
                         this.setState({
                             ...this.state,
                             data: this.handleResponse(res),
-                            isError: false
+                            isError: false,
+                            isLoading: false
+                            
                         });
                         // console.log(this.state.data);
                         this.tableBody();
                     })
                     .catch(error => {
                         console.log(error);
-                        this.setState({ ...this.state, isError: true });
+                        this.setState({ ...this.state, isError: true, isLoading: false });
                     });
-                this.setState({ ...this.state, isLoading: false });
             }
             // this.forceUpdate();
             // console.log(this.state.data);            
         }, 10000);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalId);
     }
 
     handleResponse = (response) => {
@@ -140,9 +144,12 @@ export class Chart extends Component {
         return (
             <div className={chartStyles.chartDiv}>
                 {
-                    this.state.isError ? <p>Error</p> :
-                        <div id="tbodyStatistics" ref="statistics" />
+                    this.state.isLoading ? <div className={chartStyles.loader}></div> : null
                 }
+                {
+                    this.state.isError ? <p>Error</p> : null
+                }
+                <div id="tbodyStatistics" ref="statistics" />
             </div>
         )
     }
