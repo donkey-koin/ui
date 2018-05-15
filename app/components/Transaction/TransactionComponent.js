@@ -1,6 +1,8 @@
 import React, {Component}  from 'react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import * as transactionStyles from '../../styles/transaction.scss';
+
 
 export default class Transaction extends Component { 
     constructor(props) {
@@ -26,10 +28,10 @@ export default class Transaction extends Component {
 
     render() {
         return(
-            <div className="container-fluid">
-                <span className="row">Buy DK</span>
-                <div className="row"><input type="number" onChange={this.handleAmountChange} placeholder="Enter amount..." /></div>
-                <span className="row"><button className="btn" onClick={() => this.makeBuyTransaction()}>Buy DonkeyKoin</button></span>
+            <div className={transactionStyles.transaction + " container-fluid"}>
+                <div className={transactionStyles.title}>Buy Donkey Koin</div> 
+                <div className="row"><input className={transactionStyles.transactionInput} onChange={this.handleAmountChange} placeholder="Enter amount..." /></div>
+                <span className="row"><button className={transactionStyles.buyButton + " btn btn-success"} onClick={() => this.makeBuyTransaction()}>Place Buy Order</button></span>
             </div>
         )
     }

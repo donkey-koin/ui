@@ -31,30 +31,19 @@ export class Dashboard extends Component {
     render() {
         return (
             <div className={dashboardStyle.dashboard + " container-fluid"}>
-                {/* <button onClick={() => this.onSztynks()}>sztynks1</button> */}
-<<<<<<< HEAD
-                <Navbar logoutHandler={this.logout}/>
-                <div className="row">
-                    <div className="col-3 transactionBar">
-                        <div><Wallet balanceEuro={this.props.wallet.balanceEuro}
-=======
                 <div><Navbar logoutHandler={this.logout}/></div>
                 <div className={dashboardStyle.mainRow + " row"}>
                     <div className={dashboardStyle.transactionBar + " col-3"}>
                         <div className={dashboardStyle.transactionBarHeader}>Order form</div>
                         <Wallet balanceEuro={this.props.wallet.balanceEuro}
->>>>>>> added styles for dashboard (wip)
                             balanceDK={this.props.wallet.balanceDK}
                             depositHandler={this.props.actions.depositToWallet}
                             user={this.props.user.loggedUser}
                         />
-                        <hr color="white"/>
-                        <div>
-                            <Transaction user={this.props.user.loggedUser}
-                                buyKoinHandler={this.props.actions.buyKoin}    
-                                updateWalletHandler={this.props.actions.updateWallet}
-                            />
-                        </div>
+                        <Transaction user={this.props.user.loggedUser}
+                            buyKoinHandler={this.props.actions.buyKoin}    
+                            updateWalletHandler={this.props.actions.updateWallet}
+                        />
                     </div>  
                     <div className="col-9">
                         <Chart />
