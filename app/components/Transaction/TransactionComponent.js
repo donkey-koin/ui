@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import * as transactionStyles from '../../styles/transaction.scss';
 
+const BUY_TYPE = "buy"
+const SELL_TYPE = "sell"
 
 export default class Transaction extends Component { 
     constructor(props) {
@@ -10,7 +12,8 @@ export default class Transaction extends Component {
     }
 
     state = {
-        moneyAmount: 0
+        moneyAmount: 0,
+        transactionType: BUY_TYPE 
     }
 
     handleAmountChange = (e) => {
