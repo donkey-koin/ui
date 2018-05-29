@@ -20,7 +20,7 @@ export class Dashboard extends Component {
 
     componentDidUpdate(prevProps) {
         if (!prevProps.user.loggedIn && this.props.user.loggedIn) {
-            this.props.actions.updateWallet(this.props.user.loggedUser)
+            this.props.actions.updateWallet(this.props.user.loggedUser,this.props.user.token)
         }
     }
 
@@ -39,10 +39,12 @@ export class Dashboard extends Component {
                             balanceDK={this.props.wallet.balanceDK}
                             depositHandler={this.props.actions.depositToWallet}
                             user={this.props.user.loggedUser}
+                            token={this.props.user.token}
                         />
                         <Transaction user={this.props.user.loggedUser}
                             buyKoinHandler={this.props.actions.buyKoin}    
                             updateWalletHandler={this.props.actions.updateWallet}
+                            token={this.props.user.token}
                         />
                     </div>  
                     <div className="col-9">

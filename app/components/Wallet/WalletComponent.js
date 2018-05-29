@@ -21,7 +21,7 @@ export default class Wallet extends Component {
                     <span className={walletStyles.rightCol + " col-6"}>{this.props.balanceDK}</span>
                 </span>
                 <span className={walletStyles.buttonsRow +  " row"}>
-                    <span className="col-6"><button className="btn btn-success" onClick={() => this.props.depositHandler(this.props.user,1000)}>DEPOSIT</button></span>
+                    <span className="col-6"><button className="btn btn-success" onClick={() => this.props.depositHandler(this.props.user,1000,this.props.token)}>DEPOSIT</button></span>
                     <span className="col-6"><button className="btn btn-danger" onClick={this.props.withdrawnHandler}>WITHDRAWN</button></span>
                 </span>
             </div>
