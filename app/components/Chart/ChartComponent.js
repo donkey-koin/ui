@@ -77,7 +77,7 @@ export class Chart extends Component {
             ret.push({
                 index: i,
                 value: response[i].cents,
-                date: response[i].date
+                date: new Date(response[i].date).toLocaleString()
             });
             // console.log(response[i]);
         }
@@ -123,7 +123,7 @@ export class Chart extends Component {
                 <tbody>
                     {
                         this.state.data.map(item => <tr key={item.index}>
-                            <td>{item.index}</td>
+                            <td>{item.index + 1}</td>
                             <td>{item.date}</td>
                             <td>{item.value}</td>
                         </tr>)
