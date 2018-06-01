@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from "../Navbar/NavbarComponent";
-import * as myProfileStyles  from '../../styles/my-profile.scss';
+import * as myProfileStyles from '../../styles/my-profile.scss';
 
 
 export default class MyProfle extends Component {
@@ -11,9 +11,8 @@ export default class MyProfle extends Component {
 
     render() {
         return (
-            <div className={myProfileStyles.nav + " container-fluid"}>
-                <Navbar logoutHandler={this.logout}/>
-
+            <div className={myProfileStyles.nav}>
+                <Navbar logoutHandler={this.logout} />
             </div>
         )
     }

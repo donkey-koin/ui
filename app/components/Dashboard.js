@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import { footer } from '../styles/footer.scss';
 import * as dashboardStyle  from '../styles/dashboard.scss';
 
-import { Chart } from './Chart/ChartComponent'
+import { Chart } from './Chart/ChartComponent';
+import { Statistics } from './Statistics/StatisticsComponent';
+
 import { Wallet } from './Wallet'; 
 import { Transaction } from './Transaction';
 
@@ -48,6 +50,7 @@ export class Dashboard extends Component {
                         />
                     </div>  
                     <div className="col-9">
+                        <Statistics last="5"/>
                         <Chart />
                     </div>  
                 </div>

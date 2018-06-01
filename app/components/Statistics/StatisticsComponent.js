@@ -1,32 +1,14 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
-import * as chartStyles from '../../styles/chart.scss';
-import {
-    XYPlot,
-    XAxis,
-    YAxis,
-    VerticalGridLines,
-    HorizontalGridLines,
-    LineMarkSeries
-} from 'react-vis';
+import * as statisticsStyles from '../../styles/statistics.scss';
 
-const timestamp = new Date().getTime();
-const ONE_DAY = 86400000;
-const ONE_HOUR = 3600000;
-const ONE_MINUTE = 60000;
-const ONE_SECOND = 1000;
 
-// TODO
-// repair xdomain, grids, styles - half of the page, onNearestX and onMouseLeave event to implement
-
-export class Chart extends Component {
-
+export class Statistics extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            last: this.props.last,
             data: [],
-            width: 400,
-            height: 200,
             isLoading: true,
             isError: false
         }
@@ -34,9 +16,9 @@ export class Chart extends Component {
 
     componentDidMount() {
         this.intervalId = setInterval(() => {
-            if (this.refs.chart) {
-
-                fetch("http://localhost:5000/last", {
+            if (this.refs.statistics) {
+                console.log(this.state.last);
+                fetch("http://localhost:5000/last?amount=" + this.state.last, {
                     headers: {
                         'content-type': 'application/json',
                     },
@@ -51,13 +33,13 @@ export class Chart extends Component {
                             isLoading: false
 
                         });
-                        this.renderChart();
+                        this.tableBody();
                     })
                     .catch(error => {
                         console.log(error);
                         this.setState({ ...this.state, isError: true, isLoading: false });
                     });
-            }
+            }            
         }, 10000);
     }
 
@@ -67,11 +49,11 @@ export class Chart extends Component {
 
     handleResponse = (response) => {
         let ret = [];
-        console.log(response);
         for (let i = 0; i < response.length; i++) {
             ret.push({
-                x: new Date(response[i].date).getTime(),
-                y: response[i].cents
+                index: i + 1,
+                value: response[i].cents,
+                date: new Date(response[i].date).toLocaleString()
             });
             // console.log(response[i]);
         }
@@ -103,50 +85,43 @@ export class Chart extends Component {
         return ret;
     }
 
-    renderChart = () => {
+    tableBody = () => {
         // console.log(this.state.data);
-        console.log(this.state.data);
         const element = (
-            <XYPlot
-                width={800}
-                height={300}
-                xDomain={[this.state.data[0].x, this.state.data[4].x]}
-                xType="time">
-
-                <VerticalGridLines />
-                <HorizontalGridLines />
-                <XAxis />
-                <YAxis />
-                <LineMarkSeries
-                    style={{
-                        stroke: 'white'
-                    }}
-                    data={this.state.data} />
-                {/* <LineMarkSeries
-                    className="linemark-series-example-2"
-                    curve={'curveMonotoneX'}
-                    data={[
-                        { x: 1, y: 11 },
-                        { x: 1.5, y: 29 },
-                        { x: 3, y: 7 }
-                    ]} /> */}
-            </XYPlot>
+            <table className={statisticsStyles.statisticsDiv +" table table-dark"}>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        this.state.data.map(item => <tr key={item.index}>
+                            <td>{item.index}</td>
+                            <td>{item.date}</td>
+                            <td>{item.value / 100}</td>
+                        </tr>)
+                    }
+                </tbody>
+            </table>
         );
         // console.log(element);
-        if (this.refs.chart) {
-            ReactDom.render(element, document.getElementById('chart'));
+        if (this.refs.statistics) {
+            ReactDom.render(element, document.getElementById('tbodyStatistics'));
         }
     }
 
     render() {
         return (
-            <div className={chartStyles.chartDiv}>
+            <div>
                 {
                     this.state.isError ? <p>Error</p> : null
                 }
-                <div id="chart" ref="chart">
+                <div id="tbodyStatistics" ref="statistics" className={statisticsStyles.statisticsDiv}>
                     {
-                        this.state.isLoading ? <div className={chartStyles.loader}></div> : null
+                        this.state.isLoading ? <div className={statisticsStyles.loader}></div> : null
                     }
                 </div>
             </div>
