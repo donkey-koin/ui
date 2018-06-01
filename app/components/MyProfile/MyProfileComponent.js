@@ -3,7 +3,7 @@ import Navbar from "../Navbar/NavbarComponent";
 import * as myProfileStyles from '../../styles/my-profile.scss';
 
 
-export default class MyProfle extends Component {
+export default class MyProfile extends Component {
 
     constructor(props) {
         super(props);

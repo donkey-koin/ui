@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import * as chartStyles from '../../styles/chart.scss';
+import '../../../node_modules/react-vis/dist/style.css';
+
+
 import {
     XYPlot,
     XAxis,
     YAxis,
     VerticalGridLines,
     HorizontalGridLines,
-    LineMarkSeries
+    LineMarkSeries,
+    LineSeries
 } from 'react-vis';
 
 const timestamp = new Date().getTime();
@@ -36,7 +40,7 @@ export class Chart extends Component {
         this.intervalId = setInterval(() => {
             if (this.refs.chart) {
 
-                fetch("http://localhost:5000/last", {
+                fetch("http://localhost:5000/last?amount=10", {
                     headers: {
                         'content-type': 'application/json',
                     },
@@ -68,7 +72,7 @@ export class Chart extends Component {
     handleResponse = (response) => {
         let ret = [];
         console.log(response);
-        for (let i = 0; i < response.length; i++) {
+        for (let i = response.length - 1; i >= 0; i--) {
             ret.push({
                 x: new Date(response[i].date).getTime(),
                 y: response[i].cents
@@ -110,18 +114,18 @@ export class Chart extends Component {
             <XYPlot
                 width={800}
                 height={300}
-                xDomain={[this.state.data[0].x, this.state.data[4].x]}
+                // xDomain={[this.state.data[0].x, this.state.data[9].x]}
                 xType="time">
 
+                <LineSeries 
+                    style={{
+                        stroke: 'white'
+                    }} 
+                    data={this.state.data} />
                 <VerticalGridLines />
                 <HorizontalGridLines />
                 <XAxis />
                 <YAxis />
-                <LineMarkSeries
-                    style={{
-                        stroke: 'white'
-                    }}
-                    data={this.state.data} />
                 {/* <LineMarkSeries
                     className="linemark-series-example-2"
                     curve={'curveMonotoneX'}
