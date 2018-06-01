@@ -21,7 +21,7 @@ const ONE_MINUTE = 60000;
 const ONE_SECOND = 1000;
 
 // TODO
-// repair xdomain, grids, styles - half of the page, onNearestX and onMouseLeave event to implement
+// repair xdomain, half of the page, onNearestX and onMouseLeave event to implement
 
 export class Chart extends Component {
 
@@ -117,23 +117,33 @@ export class Chart extends Component {
                 // xDomain={[this.state.data[0].x, this.state.data[9].x]}
                 xType="time">
 
-                <LineSeries 
-                    style={{
-                        stroke: 'white'
-                    }} 
+                <LineSeries
+                    // curve="curveBasis"
+
+                    // style={{
+                    //     stroke: 'white'
+                    // }} 
+                    opacity={1}
+                    // strokeStyle="solid"
+                    strokeStyle="dashed"
+                    strokeWidth="5px"
+
                     data={this.state.data} />
                 <VerticalGridLines />
                 <HorizontalGridLines />
-                <XAxis />
-                <YAxis />
-                {/* <LineMarkSeries
-                    className="linemark-series-example-2"
-                    curve={'curveMonotoneX'}
-                    data={[
-                        { x: 1, y: 11 },
-                        { x: 1.5, y: 29 },
-                        { x: 3, y: 7 }
-                    ]} /> */}
+                <XAxis
+                    attr="x"
+                    attrAxis="y"
+                    orientation="bottom"
+                    tickLabelAngle={0}
+                    tickTotal={10}
+                    tickFormat={function tickFormat(d) { console.log(d); return new Date(d).toLocaleString() }}
+
+                />
+                <YAxis
+                    attrAxis="x"
+                    orientation="left"
+                />
             </XYPlot>
         );
         // console.log(element);
