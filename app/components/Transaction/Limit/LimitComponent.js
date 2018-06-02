@@ -1,10 +1,17 @@
-import React, {Component}  from 'react';
-import * as transactionStyles from '../../styles/transaction.scss';
+import React, { Component } from 'react';
 
 
-export default class Transaction extends Component { 
+export default class Limit extends Component {
+    constructor(props) {
+        super(props)
+    }
 
 
+    render() {
+        return (
+            <div>LIMIT</div>
+        )
+    }
 }
 
 
