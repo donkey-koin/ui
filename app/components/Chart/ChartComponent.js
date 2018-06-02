@@ -71,45 +71,17 @@ export class Chart extends Component {
 
     handleResponse = (response) => {
         let ret = [];
-        console.log(response);
         for (let i = response.length - 1; i >= 0; i--) {
             ret.push({
                 x: new Date(response[i].date).getTime(),
                 y: response[i].cents
             });
-            // console.log(response[i]);
         }
-
-        // console.log(ret);
-        return ret;
-    }
-
-    getValues = (response) => {
-        let ret = [];
-        for (let i = 0; i < response.length; i++) {
-            ret.push(Number(Number(response[i].cents) / 100));
-            console.log(response[i].cents);
-        }
-
-        console.log(ret);
-        return ret;
-    }
-
-    getLabels = (response) => {
-        console.log(response[0]);
-        let ret = [];
-        for (let i = 0; i < response.length; i++) {
-            ret.push(response[i].date);
-            console.log(response[i].date);
-        }
-
-        console.log(ret);
         return ret;
     }
 
     renderChart = () => {
         // console.log(this.state.data);
-        console.log(this.state.data);
         const element = (
             <XYPlot
                 width={800}
@@ -137,7 +109,7 @@ export class Chart extends Component {
                     orientation="bottom"
                     tickLabelAngle={0}
                     tickTotal={10}
-                    tickFormat={function tickFormat(d) { console.log(d); return new Date(d).toLocaleString() }}
+                    tickFormat={function tickFormat(d) { return new Date(d).toLocaleString() }}
 
                 />
                 <YAxis

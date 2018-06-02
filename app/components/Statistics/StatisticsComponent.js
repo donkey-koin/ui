@@ -17,7 +17,7 @@ export class Statistics extends Component {
     componentDidMount() {
         this.intervalId = setInterval(() => {
             if (this.refs.statistics) {
-                console.log(this.state.last);
+                // console.log(this.state.last);
                 fetch("http://localhost:5000/last?amount=" + this.state.last, {
                     headers: {
                         'content-type': 'application/json',
@@ -78,10 +78,8 @@ export class Statistics extends Component {
         let ret = [];
         for (let i = 0; i < response.length; i++) {
             ret.push(response[i].date);
-            console.log(response[i].date);
         }
 
-        console.log(ret);
         return ret;
     }
 

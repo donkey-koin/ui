@@ -4,10 +4,40 @@
     padding: 1em;
     height: 100%;
 
-    .title { 
-        margin-bottom: 1em;
-    }
     
+}
+
+
+.tab{
+    flex: 1;
+    margin-bottom: -2px;
+    padding: 0 0 3px;
+    border-bottom: 2px solid transparent;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+    color: hsla(0,0%,100%,.4);
+    cursor: pointer;
+    user-select: none;
+    // transition: border-color .2s ease-in-out,color .2s ease-in-out;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 2px solid hsla(206,8%,82%,.15);
+    transition: border-color .2s ease-in-out,color .2s ease-in-out;
+    // padding-bottom: 1em;
+}
+
+.active {
+    padding-bottom: 1rem;
+    border-bottom-color: #fff;
+    color: #fff;
 }
 
 .buyButton {

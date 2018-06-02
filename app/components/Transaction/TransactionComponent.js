@@ -29,12 +29,18 @@ export default class Transaction extends Component {
             , 1500);
     }
 
+
     render() {
         return(
             <div className={transactionStyles.transaction + " container-fluid"}>
-                <div className={transactionStyles.title}>Buy Donkey Koin</div> 
-                <div className="row"><input className={transactionStyles.transactionInput} onChange={this.handleAmountChange} placeholder="Enter amount..." /></div>
-                <span className="row"><button className={transactionStyles.buyButton + " btn btn-success"} onClick={() => this.makeBuyTransaction()}>Place Buy Order</button></span>
+                <ul>
+                    <li className={transactionStyles.tab + " " + transactionStyles.active}>Buy Donkey Koin</li> 
+                    <li className={transactionStyles.tab}>LIMIT</li> 
+                </ul>
+                <div className="">
+                    <div className="row"><input className={transactionStyles.transactionInput} onChange={this.handleAmountChange} placeholder="Enter amount..." /></div>
+                    <span className="row"><button className={transactionStyles.buyButton + " btn btn-success"} onClick={() => this.makeBuyTransaction()}>Place Buy Order</button></span>
+                </div>
             </div>
         )
     }
