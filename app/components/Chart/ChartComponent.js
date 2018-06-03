@@ -5,13 +5,13 @@ import '../../../node_modules/react-vis/dist/style.css';
 
 
 import {
-    XYPlot,
     XAxis,
     YAxis,
     VerticalGridLines,
     HorizontalGridLines,
     LineMarkSeries,
-    LineSeries
+    LineSeries,
+    FlexibleXYPlot
 } from 'react-vis';
 
 const timestamp = new Date().getTime();
@@ -83,9 +83,8 @@ export class Chart extends Component {
     renderChart = () => {
         // console.log(this.state.data);
         const element = (
-            <XYPlot
-                width={800}
-                height={300}
+            <FlexibleXYPlot
+                // height={300}
                 // xDomain={[this.state.data[0].x, this.state.data[9].x]}
                 xType="time">
 
@@ -116,7 +115,7 @@ export class Chart extends Component {
                     attrAxis="x"
                     orientation="left"
                 />
-            </XYPlot>
+            </FlexibleXYPlot>
         );
         // console.log(element);
         if (this.refs.chart) {
@@ -126,15 +125,13 @@ export class Chart extends Component {
 
     render() {
         return (
-            <div className={chartStyles.chartDiv}>
+            <div id="chart" ref="chart" className={chartStyles.chartDiv}>
                 {
                     this.state.isError ? <p>Error</p> : null
                 }
-                <div id="chart" ref="chart">
-                    {
-                        this.state.isLoading ? <div className={chartStyles.loader}></div> : null
-                    }
-                </div>
+                {
+                    this.state.isLoading ? <div className={chartStyles.loader}></div> : null
+                }
             </div>
         )
     }
