@@ -10,9 +10,9 @@ export const buyKoin = (username, moneyAmount, token) => dispatch => {
     return fetchJSON("http://localhost:5000/purchase", {
         "username": username,
         "moneyAmount": moneyAmount
-    },"POST" ,token).then(response => {
+    }, "POST", token).then(response => {
         console.log(response);
-        if(response.error) {
+        if (response.error) {
             console.log(response.error)
             dispatch({ type: types.BUY_KOIN_FAILURE })
         } else {
@@ -22,6 +22,34 @@ export const buyKoin = (username, moneyAmount, token) => dispatch => {
         }
     }).catch(error => {
         console.log(error)
-        dispatch({ type: types.BUY_KOIN_FAILURE})
+        dispatch({ type: types.BUY_KOIN_FAILURE })
     });
+}
+
+export const createPurchaseTrigger = (username, moneyAmount, limit, token) => dispatch => {
+
+    console.log('create purchase trigger ' + username + ' ' + moneyAmount + ' ' + limit + ' ' + token);
+    dispatch({
+        type: types.CREATE_TRIGGER_BUY_KOIN
+    });
+
+    return fetchJSON("http://localhost:5000/purchase-trigger", {
+        "username": username,
+        "moneyAmount": moneyAmount,
+        "limit": limit
+    }, "POST", token).then(response => {
+        console.log(response);
+        if (response.error) {
+            console.log(response.error)
+            dispatch({ type: types.CREATE_TRIGGER_BUY_KOIN_FAILURE })
+        } else {
+            dispatch({
+                type: types.CREATE_TRIGGER_BUY_KOIN_SUCCESS,
+            })
+        }
+    }).catch(error => {
+        console.log(error)
+        dispatch({ type: types.BUY_KOIN_FAILURE })
+    });
+
 }

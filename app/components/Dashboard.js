@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login, depositToWallet, buyKoin, updateWallet, logout } from '../actions';
+import { login, depositToWallet, buyKoin, updateWallet, createPurchaseTrigger, logout } from '../actions';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { footer } from '../styles/footer.scss';
-import * as dashboardStyle  from '../styles/dashboard.scss';
+import * as dashboardStyle from '../styles/dashboard.scss';
 
 import { Chart } from './Chart/ChartComponent';
 import { Statistics } from './Statistics/StatisticsComponent';
 
-import { Wallet } from './Wallet'; 
+import { Wallet } from './Wallet';
 import { Transaction } from './Transaction';
 
 import Navbar from "./Navbar/NavbarComponent";
- 
+
 export class Dashboard extends Component {
 
     constructor(props) {
@@ -22,7 +22,7 @@ export class Dashboard extends Component {
 
     componentDidUpdate(prevProps) {
         if (!prevProps.user.loggedIn && this.props.user.loggedIn) {
-            this.props.actions.updateWallet(this.props.user.loggedUser,this.props.user.token)
+            this.props.actions.updateWallet(this.props.user.loggedUser, this.props.user.token)
         }
     }
 
@@ -33,7 +33,7 @@ export class Dashboard extends Component {
     render() {
         return (
             <div className={dashboardStyle.dashboard + " container-fluid"}>
-                <div><Navbar logoutHandler={this.logout}/></div>
+                <div><Navbar logoutHandler={this.logout} /></div>
                 <div className={dashboardStyle.mainRow + " row"}>
                     <div className={dashboardStyle.transactionBar + " col-3"}>
                         <div className={dashboardStyle.transactionBarHeader}>Order form</div>
@@ -44,15 +44,16 @@ export class Dashboard extends Component {
                             token={this.props.user.token}
                         />
                         <Transaction user={this.props.user.loggedUser}
-                            buyKoinHandler={this.props.actions.buyKoin}    
+                            buyKoinHandler={this.props.actions.buyKoin}
                             updateWalletHandler={this.props.actions.updateWallet}
+                            createPurchaseTriggerHandler={this.props.actions.createPurchaseTrigger}
                             token={this.props.user.token}
                         />
-                    </div>  
+                    </div>
                     <div className="col-9">
-                        <Statistics last="5"/>
+                        <Statistics last="5" />
                         <Chart />
-                    </div>  
+                    </div>
                 </div>
                 {/* <div className="row">
                     <footer className={footer}>
@@ -71,7 +72,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({ login, depositToWallet, buyKoin, updateWallet, logout}, dispatch)
+    actions: bindActionCreators({ login, depositToWallet, buyKoin, updateWallet, createPurchaseTrigger, logout }, dispatch)
 });
 
 export default connect(

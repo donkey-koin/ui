@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import * as transactionStyles from '../../styles/transaction.scss';
-import Limit from './Limit/LimitComponent';
 
 const BUY_TYPE = "buy"
 const SELL_TYPE = "sell"
@@ -18,7 +17,8 @@ export default class Transaction extends Component {
     state = {
         moneyAmount: 0,
         transactionType: BUY_TYPE,
-        order: MARKET_ORDER
+        order: MARKET_ORDER,
+        limit: 0
     }
 
     handleAmountChange = (e) => {
@@ -28,10 +28,24 @@ export default class Transaction extends Component {
         })
     }
 
+    handleLimitChange = (e) => {
+        this.setState({
+            ...this.state,
+            limit: e.target.value
+        });
+    }
+
     makeBuyTransaction = () => {
-        this.props.buyKoinHandler(this.props.user, this.state.moneyAmount, this.props.token)
-        setTimeout(() => this.props.updateWalletHandler(this.props.user, this.props.token)
-            , 1500);
+        if (this.state.order === LIMIT_ORDER && this.state.limit > 0 && this.state.moneyAmount > 0) {
+            this.props.createPurchaseTriggerHandler(this.props.user, this.state.moneyAmount, this.state.limit, this.props.token)
+            return;
+        }
+
+        if (this.state.order === MARKET_ORDER) {
+            this.props.buyKoinHandler(this.props.user, this.state.moneyAmount, this.props.token)
+            setTimeout(() => this.props.updateWalletHandler(this.props.user, this.props.token)
+                , 1500);
+        }
     }
 
     changeActive = (e) => {
@@ -51,19 +65,14 @@ export default class Transaction extends Component {
                     <li id="limit" className={transactionStyles.tab} onClick={(e) => this.changeActive(e)}>LIMIT</li>
                 </ul>
 
-                {
-                    this.state.order === MARKET_ORDER &&
-                    <div className="market-order">
-                        <div className="row"><input className={transactionStyles.transactionInput} onChange={this.handleAmountChange} placeholder="Enter amount..." /></div>
-                        <span className="row"><button className={transactionStyles.buyButton + " btn btn-success"} onClick={() => this.makeBuyTransaction()}>Place Buy Order</button></span>
-                    </div>
-                }
-                {
-                    this.state.order === LIMIT_ORDER &&
-                    <div className="limit-order">
-                        <Limit />
-                    </div>
-                }
+                <div>
+                    <div className="row"><input className={transactionStyles.transactionInput} onChange={this.handleAmountChange} placeholder="Enter amount..." /></div>
+                    {
+                        this.state.order === LIMIT_ORDER &&
+                        <div className="row"><input className={transactionStyles.transactionInput} onChange={this.handleLimitChange} placeholder="Enter EUR limit..." /></div>
+                    }
+                    <span className="row"><button className={transactionStyles.buyButton + " btn btn-success"} onClick={() => this.makeBuyTransaction()}>Place Buy Order</button></span>
+                </div>
 
             </div>
         )

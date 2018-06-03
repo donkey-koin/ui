@@ -14,3 +14,6 @@ export const buyKoin = transactionsActions.buyKoin
 // =================== WALLET ACTIONS ===================
 export const depositToWallet = walletActions.depositToWallet 
 export const updateWallet = walletActions.updateWallet
+
+// =================== PURCHASE TRIGGER ACTIONS ===================
+export const createPurchaseTrigger = transactionsActions.createPurchaseTrigger
