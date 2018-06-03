@@ -26,17 +26,20 @@ export const buyKoin = (username, moneyAmount, token) => dispatch => {
     });
 }
 
-export const createPurchaseTrigger = (username, moneyAmount, limit, token) => dispatch => {
+export const createPurchaseTrigger = (username, coinAmount, limit, transactionType, token) => dispatch => {
 
-    console.log('create purchase trigger ' + username + ' ' + moneyAmount + ' ' + limit + ' ' + token);
+    console.log('create purchase trigger ' + username + ' ' + coinAmount + ' ' + limit + ' ' + token + ' ' + transactionType);
     dispatch({
         type: types.CREATE_TRIGGER_BUY_KOIN
     });
 
+    // let actionNumber = transactionType ===   ? 1 : 0;
+    let actionNumber = 1;
     return fetchJSON("http://localhost:5000/purchase-trigger", {
         "username": username,
-        "moneyAmount": moneyAmount,
-        "limit": limit
+        "coinAmount": coinAmount,
+        "limit": limit,
+        "action": actionNumber
     }, "POST", token).then(response => {
         console.log(response);
         if (response.error) {
