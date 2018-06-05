@@ -1,13 +1,11 @@
-$buy-color: #4da53c;
-$sell-color: #ff6939;
+$buy-color: #28a745;
+$sell-color: #dc3545;
 
 .transaction { 
     background: #3a444d;
     text-align: center;
     padding: 1em;
     height: auto;
-
-    
 }
 
 .orderTypeButtonList{
@@ -19,7 +17,6 @@ $sell-color: #ff6939;
     padding: 0;
     margin-top: 1rem;
     list-style: none;
-
 }
 
 .orderTypeButtonBuyActive{
@@ -29,7 +26,7 @@ $sell-color: #ff6939;
 
 .orderTypeButtonSellActive{
     background-color: $sell-color!important;
-    color: #fff;
+    color: #fff!important;
 }
 
 
@@ -45,8 +42,9 @@ $sell-color: #ff6939;
     justify-content: center;
     align-items: center;
     height: 30px;
-    margin-left: 2px;
-    border-radius: 1px;
+    margin-left: 3px;
+    margin-right: 3px;
+    // border-radius: 1px;
     color: hsla(0,0%,100%,.5);
     background-color: hsla(0,0%,100%,.15);
     cursor: pointer;
@@ -66,9 +64,11 @@ $sell-color: #ff6939;
     color: hsla(0,0%,100%,.4);
     cursor: pointer;
     user-select: none;
-    // margin-bottom: 1rem;
+}
 
-    // transition: border-color .2s ease-in-out,color .2s ease-in-out;
+.tabList{
+    border-bottom: 2px solid hsla(206,8%,82%,.15);
+    transition: border-color .2s ease-in-out,color .2s ease-in-out;
 }
 
 ul {
@@ -78,8 +78,6 @@ ul {
     display: flex;
     width: 100%;
     // margin-bottom: 1rem;
-    border-bottom: 2px solid hsla(206,8%,82%,.15);
-    transition: border-color .2s ease-in-out,color .2s ease-in-out;
     // padding-bottom: 1em;
 }
 

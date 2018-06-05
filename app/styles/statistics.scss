@@ -1,5 +1,21 @@
+$bg-color: #29353d;
+$bg-th-color: #2f3d45;
 .statisticsDiv{
     height: 50%;
+}
+
+table {
+    background-color: $bg-color!important;
+    border-color: #fff!important;
+}
+
+th{
+    background-color: $bg-th-color!important;
+    border-top: 0px!important;
+}
+
+.table-dark td{
+    border-color: #fff!important;
 }
 
 .loader {

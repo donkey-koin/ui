@@ -80,7 +80,7 @@ export default class Transaction extends Component {
     render() {
         return (
             <div className={transactionStyles.transaction + " container-fluid"}>
-                <ul>
+                <ul className={transactionStyles.tabList}>
                     <li id="market" className={transactionStyles.tab + " " + transactionStyles.active} onClick={(e) => this.changeActive(e)}>MARKET</li>
                     <li id="limit" className={transactionStyles.tab} onClick={(e) => this.changeActive(e)}>LIMIT</li>
                 </ul>
