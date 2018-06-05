@@ -13,22 +13,22 @@
 
 .dashboard {
 	color: #fff;
-	height: 100%;
+	height: auto;
 	border-color: #fff;
     border-top: 1px solid white;
 	padding-right: 0 !important;
 	padding-left: 0 !important;
-	overflow: hidden;
+	// overflow: hidden;
 }
 
 .mainRow {
 	height: 100%;
 
 	.transactionBar {
-		height: 100%;
 		border-right: 2px solid #373942;
 		padding-right: 0; 
 		text-transform: uppercase;
+		background: #3a444d;
 
 		.transactionBarHeader {
 			background-color: #2f3d45;
