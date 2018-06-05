@@ -86,24 +86,26 @@ export class Statistics extends Component {
     tableBody = () => {
         // console.log(this.state.data);
         const element = (
-            <table className={statisticsStyles.statisticsDiv +" table table-dark"}>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        this.state.data.map(item => <tr key={item.index}>
-                            <td>{item.index}</td>
-                            <td>{item.date}</td>
-                            <td>{item.value / 100}</td>
-                        </tr>)
-                    }
-                </tbody>
-            </table>
+            <div className={statisticsStyles.statisticsDiv + " table-responsive"}>
+                <table className="table table-hover table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.state.data.map(item => <tr key={item.index}>
+                                <td>{item.index}</td>
+                                <td>{item.date}</td>
+                                <td>{item.value / 100}</td>
+                            </tr>)
+                        }
+                    </tbody>
+                </table>
+            </div>
         );
         // console.log(element);
         if (this.refs.statistics) {

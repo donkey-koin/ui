@@ -1,3 +1,6 @@
+$buy-color: #4da53c;
+$sell-color: #ff6939;
+
 .transaction { 
     background: #3a444d;
     text-align: center;
@@ -5,6 +8,50 @@
     height: 100%;
 
     
+}
+
+.orderTypeButtonList{
+    display: flex;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: #404a52;
+    margin: 0;
+    padding: 0;
+    margin-top: 1rem;
+    list-style: none;
+
+}
+
+.orderTypeButtonBuyActive{
+    background-color: $buy-color!important;
+    color: #fff!important;
+}
+
+.orderTypeButtonSellActive{
+    background-color: $sell-color!important;
+    color: #fff;
+}
+
+
+.sellButton {
+    margin: auto;
+    color: #fff!important;
+    background-color: $sell-color!important;
+}
+
+.orderTypeButton{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    margin-left: 2px;
+    border-radius: 1px;
+    color: hsla(0,0%,100%,.5);
+    background-color: hsla(0,0%,100%,.15);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color .2s ease-in-out;
 }
 
 
@@ -43,7 +90,10 @@ ul {
 }
 
 .buyButton {
-   margin: auto
+   margin: auto;
+   color: #fff;
+   background-color: $buy-color!important;
+
 }
 
 .transactionInput {
