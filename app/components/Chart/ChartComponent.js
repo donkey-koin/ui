@@ -86,6 +86,8 @@ export class Chart extends Component {
             <FlexibleXYPlot
                 // height={300}
                 // xDomain={[this.state.data[0].x, this.state.data[9].x]}
+                margin={{left: 50}}
+
                 xType="time">
 
                 <LineSeries
@@ -114,6 +116,7 @@ export class Chart extends Component {
                 <YAxis
                     attrAxis="x"
                     orientation="left"
+                    tickFormat={function tickFormat(d) { return Number(d)/100 }}
                 />
             </FlexibleXYPlot>
         );
