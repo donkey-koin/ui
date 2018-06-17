@@ -4,7 +4,21 @@
 }
 
 
+.bar{
+    border-right: 2px solid #373942;
+    padding-right: 0; 
+}
+
 .center {
     padding-top: 1rem;
     text-align:center;
+    text-transform: uppercase;
+    background: #3a444d;
+    height: 100%;
+}
+
+
+.page{
+    height: 100%;
+    // overflow: hidden;
 }

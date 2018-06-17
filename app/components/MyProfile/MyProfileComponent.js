@@ -9,16 +9,24 @@ export default class MyProfile extends Component {
         super(props);
     }
 
+    showMyTransactions = () => {
+        
+    }
+
+    showAllTransactions = () => {
+
+    }
+
     render() {
         return (
-            <div className={myProfileStyles.nav}>
+            <div className={myProfileStyles.nav + " " + myProfileStyles.page}>
                 <Navbar logoutHandler={this.logout} />
-                <div className="row"> 
-                    <div className={"col " + myProfileStyles.center}>
-                        <button type="submit" className="btn btn-success">Get My Transactions</button>
+                <div className={"row " +  myProfileStyles.page}> 
+                    <div className={"col " + myProfileStyles.center + " " + myProfileStyles.bar}>
+                        <button type="submit" className="btn btn-success" onClick={() => this.showMyTransactions()}>Get My Transactions</button>
                     </div>
                     <div className={"col " + myProfileStyles.center}>
-                        <button type="submit" className="btn btn-success">Get All Transactions</button>
+                        <button type="submit" className="btn btn-success" onClick={() => this.showAllTransactions()}>Get All Transactions</button>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ import { fetchJSON } from './apiUtils';
 import * as loginActions from './login';
 import * as transactionsActions from './transactions';
 import * as walletActions from './wallet';
+import * as blockChainActions from './blockchain';
 
 // =================== LOGIN ACTIONS ====================
 export const login = loginActions.login 
@@ -17,3 +18,7 @@ export const updateWallet = walletActions.updateWallet
 
 // =================== PURCHASE TRIGGER ACTIONS ===================
 export const createPurchaseTrigger = transactionsActions.createPurchaseTrigger
+
+// =================== BLOCKCHAIN TRANSACTION ACTIONS ===================
+export const getAllTransactions = blockChainActions.getAllTransactions;
+export const getMyTransactions = blockChainActions.getMyTransactions;
