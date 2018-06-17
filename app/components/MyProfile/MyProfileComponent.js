@@ -21,8 +21,9 @@ export class MyProfile extends Component {
 
     showMyTransactions = () => {
         // let transactions = this.props.actions.getMyTransactions(this.state.username, this.state.token);
-        fetch("http://localhost:5000/blockchain", {
-            method: 'GET'
+        fetch("http://localhost:5000/blockchain?username=" + this.state.username, {
+            method: 'GET',
+            headers: { 'Authorization': this.state.token }
         })
             .then(res => res.json())
             .then(res => {
