@@ -1,6 +1,6 @@
 export const parseJSON = response => response.json()
 
-export const fetchJSON = (url, data, method='GET', token) => {
+export const fetchJSON = (url, data, method = 'GET', token) => {
 
     let header = {
         "Accept": "application/json",
@@ -9,16 +9,24 @@ export const fetchJSON = (url, data, method='GET', token) => {
 
     if (token) {
         header = {
-            ...header, 
+            ...header,
             "Authorization": token
         }
-    } 
+    }
+    if (data) {
+        return fetch(url,
+            {
+                method: method,
+                headers: new Headers(header),
+                body: JSON.stringify(data)
+            }
+        ).then(parseJSON)
+    }
 
-    return fetch(url, 
+    return fetch(url,
         {
             method: method,
             headers: new Headers(header),
-            body: JSON.stringify(data)
         }
     ).then(parseJSON)
 }

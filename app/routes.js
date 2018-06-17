@@ -5,7 +5,7 @@ import Dashboard from './components/Dashboard';
 import { RegistrationComponent } from './components/Registration'
 import { PrivacyPolicyComponent } from './components/PrivacyPolicy';
 import { TermsAndConditionsComponent } from './components/TermsAndConditions';
-import { MyProfileComponent } from './components/MyProfile'
+import  {MyProfileComponent}  from './components/MyProfile'
 
 export default (
 	<Switch>
