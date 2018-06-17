@@ -4,6 +4,7 @@ import * as myProfileStyles from '../../styles/my-profile.scss';
 import { login, getAllTransactions, getMyTransactions, logout } from '../../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import ReactJson from 'react-json-view'
 
 export class MyProfile extends Component {
 
@@ -11,34 +12,93 @@ export class MyProfile extends Component {
         super(props);
         this.state = {
             username: this.props.user.loggedUser,
-            token: this.props.user.token
+            token: this.props.user.token,
+            allTransactions: [],
+            myTransactions: []
         }
     }
 
+
     showMyTransactions = () => {
-        this.props.actions.getMyTransactions(this.state.username, this.state.token);
+        // let transactions = this.props.actions.getMyTransactions(this.state.username, this.state.token);
+        fetch("http://localhost:5000/blockchain", {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    ...this.state,
+                    myTransactions: res
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+
     }
 
     showAllTransactions = () => {
-        this.props.actions.getAllTransactions(this.state.token);
+        // let transactions = this.props.actions.getAllTransactions(this.state.token);
+        fetch("http://localhost:5000/blockchain", {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    ...this.state,
+                    allTransactions: res
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
     }
 
     render() {
         return (
             <div className={myProfileStyles.nav + " " + myProfileStyles.page}>
                 <Navbar logoutHandler={this.logout} />
-                <div className={"row " + myProfileStyles.page}>
-                    <div className={"col " + myProfileStyles.center + " " + myProfileStyles.bar}>
-                        <button type="submit" className="btn btn-success" onClick={() => this.showMyTransactions()}>Get My Transactions</button>
+                <div className={"container " + myProfileStyles.background} >
+                    <div className={"row"}>
+                        <div className={myProfileStyles.center}>
+                            <button type="submit" className="btn btn-success" onClick={() => this.showMyTransactions()}>Get My Transactions</button>
+                            {
+                                this.state.myTransactions.length > 0 ?
+                                    <div className="row">
+                                        <div className={"container " + myProfileStyles.json}>
+                                            {this.state.myTransactions.map((item, index) => <ReactJson name="Transaction" collapsed="true" key={index} src={item} />)}
+                                        </div>
+                                    </div>
+                                    :
+                                    null
+                            }
+                        </div>
                     </div>
-                    <div className={"col " + myProfileStyles.center}>
-                        <button type="submit" className="btn btn-success" onClick={() => this.showAllTransactions()}>Get All Transactions</button>
+                    <div className={"row"}>
+                        <div className={myProfileStyles.center}>
+                            <button type="submit" className="btn btn-success" onClick={() => this.showAllTransactions()}>Get All Transactions</button>
+                            {
+                                this.state.allTransactions.length > 0 ?
+                                    <div className="row">
+                                        <div className={"container " + myProfileStyles.json}>
+                                            {this.state.allTransactions.map((item, index) => <ReactJson name="Transaction" collapsed="true" key={index} src={item} />)}
+                                        </div>
+                                    </div>
+                                    :
+                                    null
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
+
         )
     }
 }
+
+
 const mapStateToProps = state => ({
     user: state.userReducer,
 })

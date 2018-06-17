@@ -7,13 +7,29 @@
 .bar{
     border-right: 2px solid #373942;
     padding-right: 0; 
+
 }
 
 .center {
     padding-top: 1rem;
+    max-width: 100%;
+    width: 100%;
     text-align:center;
     text-transform: uppercase;
-    background: #3a444d;
+    padding-bottom: 1rem;
+
+    span{
+        color: #fff!important   ;
+    }
+}
+
+.json{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.background{
+    background: #29353d;;
     height: 100%;
 }
 
