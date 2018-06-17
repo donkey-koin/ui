@@ -13,6 +13,14 @@ export default class MyProfile extends Component {
         return (
             <div className={myProfileStyles.nav}>
                 <Navbar logoutHandler={this.logout} />
+                <div className="row"> 
+                    <div className={"col " + myProfileStyles.center}>
+                        <button type="submit" className="btn btn-success">Get My Transactions</button>
+                    </div>
+                    <div className={"col " + myProfileStyles.center}>
+                        <button type="submit" className="btn btn-success">Get All Transactions</button>
+                    </div>
+                </div>
             </div>
         )
     }
