@@ -77,6 +77,10 @@ export class MyProfile extends Component {
 
     }
 
+    logout = () => {
+        this.props.actions.logout()
+    }
+
     render() {
         return (
             <div className={myProfileStyles.nav + " " + myProfileStyles.page}>
