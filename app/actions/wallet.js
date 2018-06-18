@@ -3,6 +3,15 @@ import { fetchJSON } from './apiUtils';
 
 export const depositToWallet = (username, amountToDeposit, token) => dispatch => {
 
+    let parsedAmount = parseFloat(amountToDeposit) 
+    if (isNaN(parsedAmount)) { 
+        dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: {message: "Amount to deposit must be a number"} })
+        return
+    } else if (parsedAmount <= 0) { 
+        dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: {message: "Amount to deposit must be a bigger than 0"} })
+        return
+    }
+
     dispatch({
         type: types.DEPOSIT_TO_WALLET
     });
@@ -39,18 +48,27 @@ export const depositToWallet = (username, amountToDeposit, token) => dispatch =>
 
 export const withdrawnFromWallet = (username, amountToWithdrawn, token) => dispatch => {
 
+    let parsedAmount = parseFloat(amountToWithdrawn) 
+    if (isNaN(parsedAmount)) { 
+        dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: {message: "Amount to withdrawn must be a number"} })
+        return
+    } else if (parsedAmount <= 0) { 
+        dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: {message: "Amount to withdrawn must be a bigger than 0"} })
+        return
+    }
+
     dispatch({
         type: types.WITHDRAW_FROM_WALLET
     });
 
-    return fetchJSON("http://localhost:5000/depositToWallet", {
+    return fetchJSON("http://localhost:5000/withdrawnFromWallet", {
         "username": username,
         "moneyToWithdrawn": amountToWithdrawn
     },"POST", token).then(response => {
         if(response.error) {
             let errorMsg
             if (response.status === 400) { 
-                errorMsg = 'Amount to deposit must be a number'
+                errorMsg = 'Amount to withdrawn must be a number'
             } else if (response.status === 402) {
                 errorMsg = 'Not enough money in wallet'
             }

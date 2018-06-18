@@ -36,7 +36,7 @@ export default class Wallet extends Component {
                 </span>
                 <span className={walletStyles.buttonsRow +  " row"}>
                     <span className="col-6"><button className="btn btn-success" onClick={() => this.props.depositHandler(this.props.user,this.state.input,this.props.token)}>DEPOSIT</button></span>
-                    <span className="col-6"><button className="btn btn-danger" onClick={this.props.withdrawnHandler}>WITHDRAWN</button></span>
+                    <span className="col-6"><button className="btn btn-danger" onClick={() => this.props.withdrawnHandler(this.props.user,this.state.input,this.props.token)}>WITHDRAWN</button></span>
                 </span>
             </div>
         )
