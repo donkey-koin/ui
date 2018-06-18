@@ -12,6 +12,7 @@ export const logout = loginActions.logout
 
 // =================== TRANSACTION ACTIONS ==============
 export const buyKoin = transactionsActions.buyKoin
+export const sellKoin = transactionsActions.sellKoin
 
 // =================== WALLET ACTIONS ===================
 export const depositToWallet = walletActions.depositToWallet 

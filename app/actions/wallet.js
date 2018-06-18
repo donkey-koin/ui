@@ -66,7 +66,6 @@ export const withdrawnFromWallet = (username, amountToWithdrawn, token) => dispa
         "moneyToWithdrawn": amountToWithdrawn
     },"POST", token).then(response => {
         if(response.error) {
-            console.log(response)
             let errorMsg
             if (response.status === 400) { 
                 errorMsg = 'Amount to withdrawn must be a number'

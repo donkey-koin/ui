@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login, depositToWallet, withdrawnFromWallet, buyKoin, updateWallet, createPurchaseTrigger, logout, closeMessage } from '../actions';
+import { login, depositToWallet, withdrawnFromWallet, buyKoin, sellKoin, updateWallet, createPurchaseTrigger, logout, closeMessage } from '../actions';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { footer } from '../styles/footer.scss';
@@ -49,6 +49,7 @@ export class Dashboard extends Component {
                             />
                             <Transaction user={this.props.user.loggedUser}
                                 buyKoinHandler={this.props.actions.buyKoin}
+                                sellKoinHandler={this.props.actions.sellKoin}
                                 updateWalletHandler={this.props.actions.updateWallet}
                                 createPurchaseTriggerHandler={this.props.actions.createPurchaseTrigger}
                                 token={this.props.user.token}
@@ -78,7 +79,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({ login, depositToWallet, withdrawnFromWallet, buyKoin, updateWallet, createPurchaseTrigger, logout, closeMessage }, dispatch)
+    actions: bindActionCreators({ login, depositToWallet, withdrawnFromWallet, buyKoin, sellKoin, updateWallet, createPurchaseTrigger, logout, closeMessage }, dispatch)
 });
 
 export default connect(

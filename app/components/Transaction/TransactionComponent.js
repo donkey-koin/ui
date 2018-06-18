@@ -48,6 +48,19 @@ export default class Transaction extends Component {
         }
     }
 
+    makeSellTransaction = () => {
+        if (this.state.order === LIMIT_ORDER && this.state.limit > 0 && this.state.moneyAmount > 0) {
+            this.props.createPurchaseTriggerHandler(this.props.user, this.state.moneyAmount, this.state.limit, this.transactionType, this.props.token)
+            return;
+        }
+
+        if (this.state.order === MARKET_ORDER) {
+            this.props.sellKoinHandler(this.props.user, this.state.moneyAmount, this.props.token)
+            setTimeout(() => this.props.updateWalletHandler(this.props.user, this.props.token)
+                , 1500);
+        }
+    }
+
     changeTransactionType = (e) => {
         if (e.target.id === "buy-transaction") {
             e.target.classList.add(transactionStyles.orderTypeButtonBuyActive);
@@ -100,7 +113,7 @@ export default class Transaction extends Component {
                 }
                 {
                     this.state.transactionType === SELL_TYPE &&
-                    <span className="row"><button className={transactionStyles.sellButton + " btn " + transactionStyles} onClick={() => this.makeBuyTransaction()}>Place Sell Order</button></span>
+                    <span className="row"><button className={transactionStyles.sellButton + " btn " + transactionStyles} onClick={() => this.makeSellTransaction()}>Place Sell Order</button></span>
                 }
             </div>
         )

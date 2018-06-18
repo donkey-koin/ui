@@ -14,7 +14,16 @@ export const buyKoin = (username, moneyAmount, token) => dispatch => {
         console.log(response);
         if (response.error) {
             console.log(response.error)
-            dispatch({ type: types.BUY_KOIN_FAILURE })
+            let errorMgs
+            let wasError 
+            if (response.status === 507) {
+                wasError = false
+                errorMgs = 'No available sell orders. Added new buy order for ' + moneyAmount 
+            } else if (response.status === 402) {
+                wasError = true
+                errorMgs = 'Not enought money in wallet'
+            }
+            dispatch({ type: (wasError ? types.SHOW_ERROR_MESSAGE : types.SHOW_INFO_MESSAGE), payload: {message: errorMgs} })
         } else {
             dispatch({
                 type: types.BUY_KOIN_SUCCESS,
@@ -22,9 +31,35 @@ export const buyKoin = (username, moneyAmount, token) => dispatch => {
         }
     }).catch(error => {
         console.log(error)
-        dispatch({ type: types.BUY_KOIN_FAILURE })
+        dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: {message: 'Server error'} })
     });
 }
+
+export const sellKoin = (username, moneyAmount, token) => dispatch => {
+
+    dispatch({
+        type: types.SELL_KOIN
+    });
+
+    return fetchJSON("http://localhost:5000/sell", {
+        "username": username,
+        "moneyAmount": moneyAmount
+    }, "POST", token).then(response => {
+        console.log(response);
+        if (response.error) {
+            console.log(response.error)
+            dispatch({ type: types.SELL_KOIN_FAILURE })
+        } else {
+            dispatch({
+                type: types.SELL_KOIN_SUCCESS,
+            })
+        }
+    }).catch(error => {
+        console.log(error)
+        dispatch({ type: types.SELL_KOIN_FAILURE })
+    });
+}
+
 
 export const createPurchaseTrigger = (username, coinAmount, limit, transactionType, token) => dispatch => {
 
