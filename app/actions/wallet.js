@@ -66,10 +66,11 @@ export const withdrawnFromWallet = (username, amountToWithdrawn, token) => dispa
         "moneyToWithdrawn": amountToWithdrawn
     },"POST", token).then(response => {
         if(response.error) {
+            console.log(response)
             let errorMsg
             if (response.status === 400) { 
                 errorMsg = 'Amount to withdrawn must be a number'
-            } else if (response.status === 402) {
+            } else if (response.status === 412) {
                 errorMsg = 'Not enough money in wallet'
             }
             dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: {message: errorMsg} })
