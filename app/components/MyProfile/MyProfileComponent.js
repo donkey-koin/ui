@@ -14,13 +14,15 @@ export class MyProfile extends Component {
             username: this.props.user.loggedUser,
             token: this.props.user.token,
             allTransactions: [],
-            myTransactions: []
+            myTransactions: [],
+            myTriggers: []
         }
     }
 
 
     showMyTransactions = () => {
         // let transactions = this.props.actions.getMyTransactions(this.state.username, this.state.token);
+        console.log(this.state.username);
         fetch("http://localhost:5000/blockchain?username=" + this.state.username, {
             method: 'GET',
             headers: { 'Authorization': this.state.token }
@@ -37,6 +39,24 @@ export class MyProfile extends Component {
             });
 
 
+    }
+
+    showMyTriggers = () => {
+        console.log(this.state.username);
+        fetch("http://localhost:5000/my-triggers?username=" + this.state.username, {
+            method: 'GET',
+            headers: { 'Authorization': this.state.token }
+        })
+            .then(res => res.json())
+            .then(res => {
+                this.setState({
+                    ...this.state,
+                    myTriggers: res
+                });
+            })
+            .catch(error => {
+                // console.log(error);
+            });       
     }
 
     showAllTransactions = () => {
@@ -85,6 +105,21 @@ export class MyProfile extends Component {
                                     <div className="row">
                                         <div className={"container " + myProfileStyles.json}>
                                             {this.state.allTransactions.map((item, index) => <ReactJson name="Transaction" collapsed="true" key={index} src={item} />)}
+                                        </div>
+                                    </div>
+                                    :
+                                    null
+                            }
+                        </div>
+                    </div>
+                    <div className={"row"}>
+                        <div className={myProfileStyles.center}>
+                            <button type="submit" className="btn btn-success" onClick={() => this.showMyTriggers()}>Show My Triggers</button>
+                            {
+                                this.state.myTriggers.length > 0 ?
+                                    <div className="row">
+                                        <div className={"container " + myProfileStyles.json}>
+                                            {this.state.myTriggers.map((item, index) => <ReactJson name="Trigger" collapsed="true" key={index} src={item} />)}
                                         </div>
                                     </div>
                                     :
