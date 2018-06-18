@@ -13,6 +13,7 @@ import { Wallet } from './Wallet';
 import { Transaction } from './Transaction';
 
 import Navbar from "./Navbar/NavbarComponent";
+import {MessageModalComponent} from "./MessageModal"
 
 export class Dashboard extends Component {
 
@@ -34,6 +35,7 @@ export class Dashboard extends Component {
         return (
             <div className={dashboardStyle.dashboard + " container-fluid"}>
                 <div><Navbar logoutHandler={this.logout} /></div>
+                <MessageModalComponent/>
                 <div className={dashboardStyle.mainRow + " row"}>
                     <div className={dashboardStyle.transactionBar + " col-3"}>
                         <div className={dashboardStyle.transactionBarHeader}>Order form</div>
