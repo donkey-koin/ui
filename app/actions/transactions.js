@@ -33,8 +33,8 @@ export const createPurchaseTrigger = (username, coinAmount, limit, transactionTy
         type: types.CREATE_TRIGGER_BUY_KOIN
     });
 
-    // let actionNumber = transactionType ===   ? 1 : 0;
-    let actionNumber = 1;
+    let actionNumber = transactionType === "buy"  ? 1 : 0;
+
     return fetchJSON("http://localhost:5000/purchase-trigger", {
         "username": username,
         "coinAmount": coinAmount,
