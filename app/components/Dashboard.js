@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login, depositToWallet, buyKoin, updateWallet, createPurchaseTrigger, logout } from '../actions';
+import { login, depositToWallet, buyKoin, updateWallet, createPurchaseTrigger, logout, closeMessage } from '../actions';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { footer } from '../styles/footer.scss';
@@ -34,27 +34,29 @@ export class Dashboard extends Component {
     render() {
         return (
             <div className={dashboardStyle.dashboard + " container-fluid"}>
-                <div><Navbar logoutHandler={this.logout} /></div>
-                <MessageModalComponent/>
-                <div className={dashboardStyle.mainRow + " row"}>
-                    <div className={dashboardStyle.transactionBar + " col-3"}>
-                        <div className={dashboardStyle.transactionBarHeader}>Order form</div>
-                        <Wallet balanceEuro={this.props.wallet.balanceEuro}
-                            balanceDK={this.props.wallet.balanceDK}
-                            depositHandler={this.props.actions.depositToWallet}
-                            user={this.props.user.loggedUser}
-                            token={this.props.user.token}
-                        />
-                        <Transaction user={this.props.user.loggedUser}
-                            buyKoinHandler={this.props.actions.buyKoin}
-                            updateWalletHandler={this.props.actions.updateWallet}
-                            createPurchaseTriggerHandler={this.props.actions.createPurchaseTrigger}
-                            token={this.props.user.token}
-                        />
-                    </div>
-                    <div className="col-9">
-                        <Statistics last="5" />
-                        <Chart />
+                {this.props.message.display && <MessageModalComponent message={this.props.message.message} error={this.props.message.wasError} closeMessageHandler={this.props.actions.closeMessage}/>}
+                <div className={(this.props.message.display ? ' ' + dashboardStyle.dimmed : '') }>
+                    <div><Navbar logoutHandler={this.logout} /></div>
+                    <div className={dashboardStyle.mainRow + " row"}>
+                        <div className={dashboardStyle.transactionBar + " col-3"}>
+                            <div className={dashboardStyle.transactionBarHeader}>Order form</div>
+                            <Wallet balanceEuro={this.props.wallet.balanceEuro}
+                                balanceDK={this.props.wallet.balanceDK}
+                                depositHandler={this.props.actions.depositToWallet}
+                                user={this.props.user.loggedUser}
+                                token={this.props.user.token}
+                            />
+                            <Transaction user={this.props.user.loggedUser}
+                                buyKoinHandler={this.props.actions.buyKoin}
+                                updateWalletHandler={this.props.actions.updateWallet}
+                                createPurchaseTriggerHandler={this.props.actions.createPurchaseTrigger}
+                                token={this.props.user.token}
+                            />
+                        </div>
+                        <div className="col-9">
+                            <Statistics last="5" />
+                            <Chart />
+                        </div>
                     </div>
                 </div>
                 {/* <div className="row">
@@ -70,11 +72,12 @@ export class Dashboard extends Component {
 
 const mapStateToProps = state => ({
     user: state.userReducer,
-    wallet: state.walletReducer
+    wallet: state.walletReducer,
+    message: state.messageReducer
 })
 
 const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({ login, depositToWallet, buyKoin, updateWallet, createPurchaseTrigger, logout }, dispatch)
+    actions: bindActionCreators({ login, depositToWallet, buyKoin, updateWallet, createPurchaseTrigger, logout, closeMessage }, dispatch)
 });
 
 export default connect(

@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
-import { closeMessage } from '../../actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as messageModalStyles from '../../styles/message-modal.scss';
 
-export class MessageModalComponent extends Component {
+export default class MessageModalComponent extends Component {
 
     render() {
         return(
-            <div id="exitModal">
-                <div id="exit-modal-content">
-                    <div className="row text-center">
-                        <h4>{this.props.messageState.wasError ? "ERROR": "INFO"}</h4>
+            <div className={messageModalStyles.exitModal}>
+                <div className={messageModalStyles.exitModalContent}>
+                    <div className={messageModalStyles.text}>
+                        <h4>{this.props.error ? "ERROR": "INFO"}</h4>
+                        <hr/>
+                        <p>{this.props.message}</p>
                     </div>
-                    &nbsp;
-                    <div className="row text-center">
-                        <button onClick={this.props.actions.closeMessage} className="btn">Close</button>
+                    <div className={messageModalStyles.button}>
+                        <button onClick={this.props.closeMessageHandler} className={this.props.error ? "btn btn-danger" : "btn btn-info"} >Close</button>
                     </div>
                 </div>
 
@@ -23,16 +24,3 @@ export class MessageModalComponent extends Component {
     }
 
 }
-
-const mapStateToProps = state => ({
-    messageState: state.messageReducer
-})
-
-const mapDispatchToProps = dispatch => ({
-    actions: bindActionCreators({ closeMessage }, dispatch)
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MessageModalComponent);
