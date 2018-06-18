@@ -15,7 +15,7 @@ export default class MessageModalComponent extends Component {
                         <p>{this.props.message}</p>
                     </div>
                     <div className={messageModalStyles.button}>
-                        <button onClick={this.props.closeMessageHandler} className={this.props.error ? "btn btn-danger" : "btn btn-info"} >Close</button>
+                        <button onClick={this.props.closeMessageHandler} className={this.props.error ? "btn btn-danger" : "btn btn-info"} >Ok</button>
                     </div>
                 </div>
 

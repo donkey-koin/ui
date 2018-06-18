@@ -8,6 +8,17 @@ export default class Wallet extends Component {
         super(props)
     }
 
+    state = { 
+        input: 0
+    }
+
+    handleAmountChange = (e) => { 
+        this.setState({
+            ...this.state,
+            input: e.target.value
+        })
+    }
+
     render() {
         return(
             <div className={walletStyles.wallet + " container-fluid"}>
@@ -21,10 +32,10 @@ export default class Wallet extends Component {
                     <span className={walletStyles.rightCol + " col-6"}>{this.props.balanceDK}</span>
                 </span>
                 <span>
-                    <div className="row"><input className={walletStyles.walletInput} onChange={this.handleAmountChange} placeholder="Enter amount..." /></div>
+                    <div className="row"><input onChange={this.handleAmountChange} className={walletStyles.walletInput} onChange={this.handleAmountChange} placeholder="Enter amount..." /></div>
                 </span>
                 <span className={walletStyles.buttonsRow +  " row"}>
-                    <span className="col-6"><button className="btn btn-success" onClick={() => this.props.depositHandler(this.props.user,1000,this.props.token)}>DEPOSIT</button></span>
+                    <span className="col-6"><button className="btn btn-success" onClick={() => this.props.depositHandler(this.props.user,this.state.input,this.props.token)}>DEPOSIT</button></span>
                     <span className="col-6"><button className="btn btn-danger" onClick={this.props.withdrawnHandler}>WITHDRAWN</button></span>
                 </span>
             </div>
