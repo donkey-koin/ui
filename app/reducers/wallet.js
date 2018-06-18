@@ -7,13 +7,22 @@ const initState = {
 
 // TODO ERROR HANDLING, DEPOSIT IN PROGRESS
 export default (state = initState, action) => {
+    let amountToUpdate
+    let currentWallet
     switch (action.type) {
         case types.DEPOSIT_TO_WALLET_SUCCESS:
-            let parsedInt = parseFloat(action.payload.amount)
-            let parsedInt2 = parseFloat(state.balanceEuro)
+            amountToUpdate = parseFloat(action.payload.amount)
+            currentWallet = parseFloat(state.balanceEuro)
             return {
                 ...state,
-                balanceEuro: parsedInt + parsedInt2
+                balanceEuro: amountToUpdate + currentWallet
+            };
+        case types.WITHDRAW_FROM_WALLET_SUCCESS:
+            amountToUpdate = parseFloat(action.payload.amount)
+            currentWallet = parseFloat(state.balanceEuro)
+            return {
+                ...state,
+                balanceEuro: currentWallet - amountToUpdate
             };
         case types.UPDATE_WALLET:
             return {

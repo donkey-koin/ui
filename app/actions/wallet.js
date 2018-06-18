@@ -13,8 +13,16 @@ export const depositToWallet = (username, amountToDeposit, token) => dispatch =>
     },"POST", token).then(response => {
         console.log(response);
         if(response.error) {
-            console.log(response.error)
-            dispatch({ type: types.DEPOSIT_TO_WALLET_FAILURE })
+            let errorMsg
+            if (response.status === 400) { 
+                errorMsg = 'Amount to deposit must be a number'
+            }
+            dispatch({ 
+                type: types.SHOW_ERROR_MESSAGE,
+                payload: { 
+                    message: errorMsg
+                }
+            })
         } else {
             dispatch({
                 type: types.DEPOSIT_TO_WALLET_SUCCESS,
@@ -24,8 +32,40 @@ export const depositToWallet = (username, amountToDeposit, token) => dispatch =>
             })
         }
     }).catch(error => {
+        dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: {message: 'Server error'} })
+    });
+}
+
+
+export const withdrawnFromWallet = (username, amountToWithdrawn, token) => dispatch => {
+
+    dispatch({
+        type: types.WITHDRAW_FROM_WALLET
+    });
+
+    return fetchJSON("http://localhost:5000/depositToWallet", {
+        "username": username,
+        "moneyToWithdrawn": amountToWithdrawn
+    },"POST", token).then(response => {
+        if(response.error) {
+            let errorMsg
+            if (response.status === 400) { 
+                errorMsg = 'Amount to deposit must be a number'
+            } else if (response.status === 402) {
+                errorMsg = 'Not enough money in wallet'
+            }
+            dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: {message: errorMsg} })
+        } else {
+            dispatch({
+                type: types.WITHDRAW_FROM_WALLET_SUCCESS,
+                payload: {
+                    amount: amountToWithdrawn
+                }
+            })
+        }
+    }).catch(error => {
         console.log(error)
-        dispatch({ type: types.DEPOSIT_TO_WALLET_FAILURE })
+        dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: {message: 'Server error'} })
     });
 }
 

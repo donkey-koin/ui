@@ -1,8 +1,8 @@
 import * as types from '../actions/types';
 
 const initState = {
-    message: 'dupka',
-    display: true,
+    message: '',
+    display: false,
     wasError: false
 };
 
