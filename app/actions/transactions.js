@@ -48,7 +48,16 @@ export const sellKoin = (username, moneyAmount, token) => dispatch => {
         console.log(response);
         if (response.error) {
             console.log(response.error)
-            dispatch({ type: types.SELL_KOIN_FAILURE })
+            let errorMgs
+            let wasError 
+            if (response.status === 507) {
+                wasError = false
+                errorMgs = 'No available buy orders. Added new sell order for ' + moneyAmount 
+            } else if (response.status === 402) {
+                wasError = true
+                errorMgs = 'Not enought Koins in wallet'
+            }
+            dispatch({ type: (wasError ? types.SHOW_ERROR_MESSAGE : types.SHOW_INFO_MESSAGE), payload: {message: errorMgs} })
         } else {
             dispatch({
                 type: types.SELL_KOIN_SUCCESS,
@@ -56,7 +65,7 @@ export const sellKoin = (username, moneyAmount, token) => dispatch => {
         }
     }).catch(error => {
         console.log(error)
-        dispatch({ type: types.SELL_KOIN_FAILURE })
+        dispatch({ type: types.SHOW_ERROR_MESSAGE, payload: {message: 'Server error'} })
     });
 }
 
