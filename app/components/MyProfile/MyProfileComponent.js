@@ -20,9 +20,19 @@ export class MyProfile extends Component {
     }
 
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.user.loggedUser !== this.props.user.loggedUser) {
+            this.state = {
+                ...this.state,
+                username: nextProps.user.loggedUser,
+                token: nextProps.user.token
+            };
+        }
+    }
+
+
     showMyTransactions = () => {
         // let transactions = this.props.actions.getMyTransactions(this.state.username, this.state.token);
-        console.log(this.state.username);
         fetch("http://localhost:5000/blockchain?username=" + this.state.username, {
             method: 'GET',
             headers: { 'Authorization': this.state.token }
@@ -42,7 +52,6 @@ export class MyProfile extends Component {
     }
 
     showMyTriggers = () => {
-        console.log(this.state.username);
         fetch("http://localhost:5000/my-triggers?username=" + this.state.username, {
             method: 'GET',
             headers: { 'Authorization': this.state.token }
@@ -56,7 +65,7 @@ export class MyProfile extends Component {
             })
             .catch(error => {
                 // console.log(error);
-            });       
+            });
     }
 
     showAllTransactions = () => {
