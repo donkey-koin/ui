@@ -30,7 +30,10 @@ export const buyKoin = (username, moneyAmount, token) => dispatch => {
                 errorMgs = 'No available sell orders. Added new buy order for ' + moneyAmount 
             } else if (response.status === 402) {
                 wasError = true
-                errorMgs = 'Not enought money in wallet'
+                errorMgs = 'Not enough money in wallet'
+            } else if (response.status === 412) { 
+                wasError = false
+                errorMgs = 'Not enough money in wallet, you have unfilled orders'
             }
             dispatch({ type: (wasError ? types.SHOW_ERROR_MESSAGE : types.SHOW_INFO_MESSAGE), payload: {message: errorMgs} })
         } else {
@@ -74,6 +77,9 @@ export const sellKoin = (username, moneyAmount, token) => dispatch => {
             } else if (response.status === 402) {
                 wasError = true
                 errorMgs = 'Not enought Koins in wallet'
+            } else if (response.status === 412) { 
+                wasError = false
+                errorMgs = 'Not enough money in wallet, you have unfilled orders'
             }
             dispatch({ type: (wasError ? types.SHOW_ERROR_MESSAGE : types.SHOW_INFO_MESSAGE), payload: {message: errorMgs} })
         } else {

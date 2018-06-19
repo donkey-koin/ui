@@ -23,7 +23,9 @@ export class Dashboard extends Component {
 
     componentDidUpdate(prevProps) {
         if (!prevProps.user.loggedIn && this.props.user.loggedIn) {
-            this.props.actions.updateWallet(this.props.user.loggedUser, this.props.user.token)
+            setInterval(() => {
+                this.props.actions.updateWallet(this.props.user.loggedUser, this.props.user.token)
+            } , 5000);
         }
     }
 
