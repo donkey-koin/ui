@@ -36,7 +36,7 @@ export default class Transaction extends Component {
     }
 
     makeBuyTransaction = () => {
-        if (this.state.order === LIMIT_ORDER && this.state.limit > 0 && this.state.moneyAmount > 0) {
+        if (this.state.order === LIMIT_ORDER ) {
             this.props.createPurchaseTriggerHandler(this.props.user, this.state.moneyAmount, this.state.limit, this.state.transactionType, this.props.token)
             return;
         }
@@ -49,7 +49,7 @@ export default class Transaction extends Component {
     }
 
     makeSellTransaction = () => {
-        if (this.state.order === LIMIT_ORDER && this.state.limit > 0 && this.state.moneyAmount > 0) {
+        if (this.state.order === LIMIT_ORDER ) {
             this.props.createPurchaseTriggerHandler(this.props.user, this.state.moneyAmount, this.state.limit, this.transactionType, this.props.token)
             return;
         }
