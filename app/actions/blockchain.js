@@ -1,5 +1,6 @@
 import * as types from './types';
 import { fetchJSON } from './apiUtils';
+import {ORCHESTRATION_HOST} from "./mapping";
 
 export const getMyTransactions = (username, token) => dispatch => {
 
@@ -7,7 +8,7 @@ export const getMyTransactions = (username, token) => dispatch => {
         type: types.GET_MY_TRANSACTIONS
     });
 
-    return fetchJSON("http://localhost:5000/blockchain", null, 'GET', token).then(response => {
+    return fetchJSON(ORCHESTRATION_HOST + "/blockchain", null, 'GET', token).then(response => {
         console.log(response);
         if (response.error) {
             console.log(response.error)
@@ -29,7 +30,7 @@ export const getAllTransactions = (token) => dispatch => {
         type: types.GET_ALL_TRANSACTIONS
     });
 
-    return fetchJSON("http://localhost:5000/blockchain", null, 'GET', token)
+    return fetchJSON(ORCHESTRATION_HOST + "/blockchain", null, 'GET', token)
         .then(response => {
             console.log(response);
             if (response.error) {

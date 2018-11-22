@@ -1,5 +1,6 @@
 import * as types from './types';
 import { fetchJSON } from './apiUtils';
+import {ORCHESTRATION_HOST} from "./mapping";
 
 export const depositToWallet = (username, amountToDeposit, token) => dispatch => {
 
@@ -16,7 +17,7 @@ export const depositToWallet = (username, amountToDeposit, token) => dispatch =>
         type: types.DEPOSIT_TO_WALLET
     });
 
-    return fetchJSON("http://localhost:5000/depositToWallet", {
+    return fetchJSON(ORCHESTRATION_HOST + "/depositToWallet", {
         "username": username,
         "moneyToDeposit": amountToDeposit
     },"POST", token).then(response => {
@@ -61,7 +62,7 @@ export const withdrawnFromWallet = (username, amountToWithdrawn, token) => dispa
         type: types.WITHDRAW_FROM_WALLET
     });
 
-    return fetchJSON("http://localhost:5000/withdrawnFromWallet", {
+    return fetchJSON(ORCHESTRATION_HOST + "/withdrawnFromWallet", {
         "username": username,
         "moneyToWithdrawn": amountToWithdrawn
     },"POST", token).then(response => {
@@ -90,7 +91,7 @@ export const withdrawnFromWallet = (username, amountToWithdrawn, token) => dispa
 
 export const updateWallet = (username,token) => dispatch => {
 
-    return fetchJSON("http://localhost:5000/walletContent", {
+    return fetchJSON(ORCHESTRATION_HOST + "/walletContent", {
         "username": username
     },"POST", token).then(response => {
         console.log(response);

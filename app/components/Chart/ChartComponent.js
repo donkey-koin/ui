@@ -13,6 +13,7 @@ import {
     LineSeries,
     FlexibleXYPlot
 } from 'react-vis';
+import {ORCHESTRATION_HOST} from "../../actions/mapping";
 
 const timestamp = new Date().getTime();
 const ONE_DAY = 86400000;
@@ -40,7 +41,7 @@ export class Chart extends Component {
         this.intervalId = setInterval(() => {
             if (this.refs.chart) {
 
-                fetch("http://localhost:5000/last?amount=10", {
+                fetch(ORCHESTRATION_HOST + "/last?amount=10", {
                     headers: {
                         'content-type': 'application/json',
                     },

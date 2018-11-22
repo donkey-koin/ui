@@ -1,0 +1,1 @@
+export const ORCHESTRATION_HOST = process.env.ORCHESTRATION_HOST;

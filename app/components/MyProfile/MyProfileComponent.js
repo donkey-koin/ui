@@ -5,6 +5,7 @@ import { login, getAllTransactions, getMyTransactions, logout } from '../../acti
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ReactJson from 'react-json-view'
+import {ORCHESTRATION_HOST} from "../../actions/mapping";
 
 export class MyProfile extends Component {
 
@@ -33,7 +34,7 @@ export class MyProfile extends Component {
 
     showMyTransactions = () => {
         // let transactions = this.props.actions.getMyTransactions(this.state.username, this.state.token);
-        fetch("http://localhost:5000/blockchain?username=" + this.state.username, {
+        fetch(ORCHESTRATION_HOST + "/blockchain?username=" + this.state.username, {
             method: 'GET',
             headers: { 'Authorization': this.state.token }
         })
@@ -52,7 +53,7 @@ export class MyProfile extends Component {
     }
 
     showMyTriggers = () => {
-        fetch("http://localhost:5000/my-triggers?username=" + this.state.username, {
+        fetch(ORCHESTRATION_HOST + "/my-triggers?username=" + this.state.username, {
             method: 'GET',
             headers: { 'Authorization': this.state.token }
         })
@@ -70,7 +71,7 @@ export class MyProfile extends Component {
 
     showAllTransactions = () => {
         // let transactions = this.props.actions.getAllTransactions(this.state.token);
-        fetch("http://localhost:5000/blockchain", {
+        fetch(ORCHESTRATION_HOST + "/blockchain", {
             method: 'GET'
         })
             .then(res => res.json())

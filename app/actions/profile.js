@@ -1,5 +1,6 @@
 import * as types from './types';
 import { fetchJSON } from './apiUtils';
+import {ORCHESTRATION_HOST} from "./mapping";
 
 export const getPersonalData = (token) => dispatch => {
 
@@ -7,7 +8,7 @@ export const getPersonalData = (token) => dispatch => {
         type: types.PERSONAL_DATA
     });
 
-    return fetchJSON("http://localhost:5000/userProfile", undefined, "GET", token).then(response => {
+    return fetchJSON(ORCHESTRATION_HOST + "/userProfile", undefined, "GET", token).then(response => {
         console.log(response);
         if (response.error) {
             console.log(response.error)

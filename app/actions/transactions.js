@@ -1,5 +1,6 @@
 import * as types from './types';
 import { fetchJSON } from './apiUtils';
+import {ORCHESTRATION_HOST} from "./mapping";
 
 export const buyKoin = (username, moneyAmount, token) => dispatch => {
 
@@ -16,7 +17,7 @@ export const buyKoin = (username, moneyAmount, token) => dispatch => {
         type: types.BUY_KOIN
     });
 
-    return fetchJSON("http://localhost:5000/purchase", {
+    return fetchJSON(ORCHESTRATION_HOST + "/purchase", {
         "username": username,
         "moneyAmount": moneyAmount
     }, "POST", token).then(response => {
@@ -62,7 +63,7 @@ export const sellKoin = (username, moneyAmount, token) => dispatch => {
         type: types.SELL_KOIN
     });
 
-    return fetchJSON("http://localhost:5000/sell", {
+    return fetchJSON(ORCHESTRATION_HOST + "/sell", {
         "username": username,
         "moneyAmount": moneyAmount
     }, "POST", token).then(response => {
@@ -113,7 +114,7 @@ export const createPurchaseTrigger = (username, coinAmount, limit, transactionTy
 
     let actionNumber = transactionType === "buy"  ? 1 : 0;
 
-    return fetchJSON("http://localhost:5000/purchase-trigger", {
+    return fetchJSON(ORCHESTRATION_HOST + "/purchase-trigger", {
         "username": username,
         "coinAmount": coinAmount,
         "limit": limit,

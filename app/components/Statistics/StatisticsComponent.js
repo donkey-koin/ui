@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 import * as statisticsStyles from '../../styles/statistics.scss';
+import {ORCHESTRATION_HOST} from "../../actions/mapping";
 
 
 export class Statistics extends Component {
@@ -18,7 +19,7 @@ export class Statistics extends Component {
         this.intervalId = setInterval(() => {
             if (this.refs.statistics) {
                 // console.log(this.state.last);
-                fetch("http://localhost:5000/last?amount=" + this.state.last, {
+                fetch(ORCHESTRATION_HOST + "/last?amount=" + this.state.last, {
                     headers: {
                         'content-type': 'application/json',
                     },

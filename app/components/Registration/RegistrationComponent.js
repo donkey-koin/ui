@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import validators from './validator';
 import * as registrationStyles from '../../styles/registration.scss';
+import {ORCHESTRATION_HOST} from "../../actions/mapping";
 
 
 export default class Registration extends Component {
@@ -132,7 +133,7 @@ export default class Registration extends Component {
             isLoading: true
         });
 
-        fetch('http://localhost:5000/register', {
+        fetch(ORCHESTRATION_HOST + '/register', {
             body: JSON.stringify(body),
             headers: {
                 'content-type': 'application/json',

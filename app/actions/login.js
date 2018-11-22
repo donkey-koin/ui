@@ -1,5 +1,6 @@
 import * as types from './types';
 import { fetchJSON } from './apiUtils';
+import {ORCHESTRATION_HOST} from "./mapping";
 
 export const login = (username, password) => dispatch => {
 
@@ -7,7 +8,7 @@ export const login = (username, password) => dispatch => {
         type: types.LOGIN
     });
 
-    return fetchJSON("http://localhost:5000/login", {
+    return fetchJSON(ORCHESTRATION_HOST + "/login", {
         "username": username,
         "password": password
     },"POST").then(response => {
