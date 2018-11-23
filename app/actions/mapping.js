@@ -1,1 +1,1 @@
-export const ORCHESTRATION_HOST = "http://orchestration-svc.donkey-koin.svc:8080";
+export const ORCHESTRATION_HOST = "http://orchestration-svc.donkey-koin.svc:5000";
