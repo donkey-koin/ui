@@ -1,1 +1,1 @@
-export const ORCHESTRATION_HOST = process.env.ORCHESTRATION_HOST;
+export const ORCHESTRATION_HOST = "orchestration-svc.donkey-koin.svc:8080";
